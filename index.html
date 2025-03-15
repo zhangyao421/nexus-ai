@@ -4,314 +4,338 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="FreeAI - 基于Pollinations.AI的免费AI图像生成和语音合成服务">
-    <meta name="theme-color" content="#05060f">
+    <meta name="theme-color" content="#f8f9fa">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <title>FreeAI - 基于 Pollinations.AI</title>
     <style>
         :root {
-            /* 主色调 */
-            --neon-pink: #ff2a6d;
-            --neon-blue: #01c8ee;
-            --neon-purple: #ae5ff8;
-            --neon-green: #05ffa1;
-            --space-blue: #0b3d91;
-            --cosmic-purple: #6633cc;
+            /* 浅色主题色彩 */
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --secondary-light: #f472b6;
+            --accent: #14b8a6;
+            --accent-light: #2dd4bf;
             
             /* 背景色 */
-            --dark-bg: #05060f;
-            --darker-bg: #02030a;
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f5f9;
+            
+            /* 文本色 */
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --text-light: #f8fafc;
             
             /* 功能色 */
-            --accent-color: #ff2a6d;
-            --star-color: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #3b82f6;
             
-            /* 星云色 */
-            --nebula-color1: rgba(174, 95, 248, 0.2);
-            --nebula-color2: rgba(1, 200, 238, 0.2);
-            --nebula-color3: rgba(255, 42, 109, 0.2);
+            /* 边框和阴影 */
+            --border-color: rgba(203, 213, 225, 0.5);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* 圆角 */
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            --radius-full: 9999px;
             
             /* 动画时间 */
-            --transition-fast: 0.3s;
-            --transition-medium: 0.5s;
-            --transition-slow: 0.8s;
+            --transition-fast: 150ms;
+            --transition-normal: 250ms;
+            --transition-slow: 350ms;
             
-            /* 阴影 */
-            --glow-blue: 0 0 15px rgba(1, 200, 238, 0.7);
-            --glow-pink: 0 0 15px rgba(255, 42, 109, 0.7);
-            --glow-purple: 0 0 15px rgba(174, 95, 248, 0.7);
+            /* 间距 */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            
+            /* 容器宽度 */
+            --container-width: 1200px;
         }
 
-        * {
+        /* 重置样式 */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', monospace;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: #ffffff;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
             overflow-x: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
-            line-height: 1.6;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        body::-webkit-scrollbar-track {
-            background: var(--darker-bg);
-        }
-
-        body::-webkit-scrollbar-thumb {
-            background: linear-gradient(var(--neon-blue), var(--neon-purple));
-            border-radius: 4px;
-        }
-
-        /* 星空背景 - 优化渲染性能 */
-        .stars-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -2;
             background-image: 
-                radial-gradient(1px 1px at 10% 10%, var(--star-color) 100%, transparent),
-                radial-gradient(1px 1px at 20% 20%, var(--star-color) 100%, transparent),
-                radial-gradient(1px 1px at 30% 30%, var(--star-color) 100%, transparent),
-                radial-gradient(1px 1px at 40% 40%, var(--star-color) 100%, transparent),
-                radial-gradient(2px 2px at 50% 50%, var(--star-color) 100%, transparent),
-                radial-gradient(1px 1px at 60% 60%, var(--star-color) 100%, transparent),
-                radial-gradient(1px 1px at 70% 70%, var(--star-color) 100%, transparent),
-                radial-gradient(1px 1px at 80% 80%, var(--star-color) 100%, transparent),
-                radial-gradient(1px 1px at 90% 90%, var(--star-color) 100%, transparent);
-            background-size: 550px 550px;
-            animation: stars-move 150s linear infinite;
+                radial-gradient(at 40% 20%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(20, 184, 166, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
         }
 
-        @keyframes stars-move {
-            0% { background-position: 0 0; }
-            100% { background-position: 550px 550px; }
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
 
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background-color: var(--star-color);
-            border-radius: 50%;
-            opacity: 0;
-            animation: twinkle var(--duration) infinite ease-in-out var(--delay);
-            will-change: opacity, transform;
+        ::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-full);
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: var(--opacity); transform: scale(1); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: var(--radius-full);
         }
 
-        /* 流星效果 - 使用GPU加速 */
-        .shooting-star {
-            position: absolute;
-            width: 150px;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,1));
-            opacity: 0;
-            transform-origin: right;
-            animation: shooting var(--duration) infinite linear var(--delay);
-            will-change: transform, opacity;
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
         }
 
-        @keyframes shooting {
-            0% { opacity: 0; transform: translateX(0) }
-            5% { opacity: 1; }
-            20% { opacity: 1; }
-            30% { opacity: 0; transform: translateX(-200px) }
-            100% { opacity: 0; transform: translateX(-200px) }
-        }
-
-        /* 星云效果 - 使用滤镜优化 */
-        .nebula {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.4;
-            z-index: -1;
-            animation: nebula-float 30s infinite alternate ease-in-out;
-            will-change: transform;
-        }
-
-        @keyframes nebula-float {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(50px, 50px) rotate(10deg); }
-        }
-
-        /* 行星轨道 - 优化变换 */
-        .orbit {
-            position: fixed;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: -1;
-            animation: orbit-rotate 60s linear infinite;
-            will-change: transform;
-        }
-
-        .planet {
-            position: absolute;
-            border-radius: 50%;
-            transform-origin: center;
-            animation: planet-glow 4s ease-in-out infinite alternate;
-            will-change: box-shadow;
-        }
-
-        @keyframes orbit-rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes planet-glow {
-            0% { box-shadow: 0 0 10px 2px var(--glow-color); }
-            100% { box-shadow: 0 0 20px 5px var(--glow-color); }
-        }
-
-        /* 噪点纹理 - 优化为SVG背景 */
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-            pointer-events: none;
-            opacity: 0.15;
-            z-index: 1;
-        }
-
+        /* 容器样式 */
         .container {
-            max-width: 1200px;
             width: 100%;
+            max-width: var(--container-width);
             margin: 0 auto;
-            padding: 2rem;
+            padding: var(--spacing-xl);
             position: relative;
             z-index: 2;
             flex: 1;
-            display: flex;
-            flex-direction: column;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 4rem;
+        /* 背景效果 */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float var(--duration) ease-in-out infinite alternate;
+            background: linear-gradient(135deg, var(--color-start), var(--color-end));
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(var(--move-x), var(--move-y)) rotate(var(--rotation)); }
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            background: radial-gradient(circle, var(--orb-color) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.15; }
+            100% { transform: scale(1.1); opacity: 0.2; }
+        }
+
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md) 0;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+            transition: transform var(--transition-normal) ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast) ease;
             position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width var(--transition-normal) ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 英雄区域 */
+        .hero {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
             animation: fadeIn 1s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        h1 {
+        .hero-title {
             font-size: 3.5rem;
             font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), var(--neon-purple));
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: transparent;
+            line-height: 1.2;
             position: relative;
             display: inline-block;
         }
 
-        h1::after {
-            content: "Free AI";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: none;
-            -webkit-text-fill-color: transparent;
-            text-shadow:
-                0 0 5px var(--neon-blue),
-                0 0 10px var(--neon-pink),
-                0 0 15px var(--neon-purple),
-                0 0 20px var(--neon-green);
-            animation: flicker 4s infinite alternate;
-            opacity: 0.7;
-        }
-
-        @keyframes flicker {
-            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
-                opacity: 0.9;
-                text-shadow:
-                    0 0 5px var(--neon-blue),
-                    0 0 10px var(--neon-pink),
-                    0 0 15px var(--neon-purple),
-                    0 0 20px var(--neon-green);
-            }
-            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
-                opacity: 0.4;
-                text-shadow: none;
-            }
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 3px;
+        .hero-title span {
             position: relative;
+            display: inline-block;
+            animation: float-text 3s ease-in-out infinite;
         }
 
-        .subtitle::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
+        .hero-title span:nth-child(1) { animation-delay: 0.1s; }
+        .hero-title span:nth-child(2) { animation-delay: 0.2s; }
+        .hero-title span:nth-child(3) { animation-delay: 0.3s; }
+        .hero-title span:nth-child(4) { animation-delay: 0.4s; }
+        .hero-title span:nth-child(5) { animation-delay: 0.5s; }
+        .hero-title span:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes float-text {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
-        /* 卡片网格 - 优化响应式布局 */
-        .grid {
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+
+        /* 卡片网格 */
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            animation: fadeIn 1.5s ease-out;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-3xl);
         }
 
-        /* 卡片样式 - 优化3D效果和过渡 */
         .card {
-            background: rgba(5, 6, 15, 0.8);
-            border-radius: 10px;
-            padding: 2rem;
-            transition: all var(--transition-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 15px rgba(1, 200, 238, 0.15);
-            backdrop-filter: blur(10px);
-            transform-style: preserve-3d;
-            transform: perspective(1000px);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal) ease;
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .card::before {
@@ -320,454 +344,398 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), var(--neon-purple));
-            z-index: 1;
-        }
-
-        .card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(1, 200, 238, 0.1), transparent 70%);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
+            z-index: -1;
             opacity: 0;
-            transition: opacity var(--transition-medium) ease;
-            z-index: 0;
+            transition: opacity var(--transition-normal) ease;
         }
 
         .card:hover {
-            transform: perspective(1000px) translateY(-15px) rotateX(5deg) rotateY(5deg);
-            box-shadow:
-                0 0 20px rgba(1, 200, 238, 0.3),
-                0 0 40px rgba(174, 95, 248, 0.2);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
         }
 
-        .card:hover::after {
+        .card:hover::before {
             opacity: 1;
         }
 
-        .card:nth-child(1)::before {
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+        .card-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
         }
 
-        .card:nth-child(2)::before {
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
-        }
-
-        .card-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* 星尘效果 - 优化粒子动画 */
-        .star-dust {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-            opacity: 0;
-            transition: opacity var(--transition-fast) ease;
-        }
-
-        .card:hover .star-dust {
-            opacity: 1;
-        }
-
-        .dust-particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: float-up 3s linear infinite;
-            will-change: transform, opacity;
-        }
-
-        @keyframes float-up {
-            0% { transform: translateY(100%) scale(0); opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { transform: translateY(-100px) scale(1); opacity: 0; }
-        }
-
-        /* 卡片图标 - 改进发光效果 */
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            position: relative;
-            transition: transform var(--transition-medium) ease;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            transition: transform var(--transition-normal) ease;
         }
 
         .card:hover .card-icon {
-            transform: scale(1.1);
-        }
-
-        .card-icon::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
-            transition: all var(--transition-medium) ease;
-        }
-
-        .card:hover .card-icon::after {
-            width: 60px;
-            height: 60px;
-            opacity: 0.8;
+            transform: scale(1.1) rotate(5deg);
         }
 
         .card:nth-child(1) .card-icon {
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px var(--neon-blue);
+            --gradient-start: var(--primary);
+            --gradient-end: var(--primary-light);
         }
 
         .card:nth-child(2) .card-icon {
-            color: var(--neon-pink);
-            text-shadow: 0 0 10px var(--neon-pink);
+            --gradient-start: var(--secondary);
+            --gradient-end: var(--secondary-light);
         }
 
-        /* 卡片标题和文本 - 改进排版 */
-        .card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-            transition: transform var(--transition-fast) ease;
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
         }
 
-        .card:hover h2 {
-            transform: translateY(-5px);
+        .card-body {
+            padding: var(--spacing-lg);
+            flex-grow: 1;
         }
 
-        .card p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem;
-            font-size: 1rem;
+        .card-text {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
             line-height: 1.6;
-            transition: opacity var(--transition-fast) ease;
         }
 
-        .card:hover p {
-            opacity: 1;
+        .card-footer {
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
         }
 
-        /* 按钮样式 - 改进交互效果 */
+        /* 按钮样式 */
         .btn {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            text-decoration: none;
             transition: all var(--transition-fast) ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-size: 0.9rem;
+            gap: var(--spacing-sm);
             position: relative;
             overflow: hidden;
-            z-index: 1;
-            text-decoration: none;
-            cursor: pointer;
         }
 
         .btn::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: var(--accent-color);
-            transition: all var(--transition-fast) ease;
-            z-index: -1;
-        }
-
-        .btn:hover {
-            color: #000;
-            box-shadow: 0 0 15px var(--accent-color);
-            transform: translateY(-3px);
-        }
-
-        .btn:hover::before {
-            width: 100%;
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .card:nth-child(1) .btn {
-            border-color: var(--neon-blue);
-            color: var(--neon-blue);
-        }
-
-        .card:nth-child(1) .btn::before {
-            background: var(--neon-blue);
-        }
-
-        .card:nth-child(1) .btn:hover {
-            box-shadow: var(--glow-blue);
-        }
-
-        .card:nth-child(2) .btn {
-            border-color: var(--neon-pink);
-            color: var(--neon-pink);
-        }
-
-        .card:nth-child(2) .btn::before {
-            background: var(--neon-pink);
-        }
-
-        .card:nth-child(2) .btn:hover {
-            box-shadow: var(--glow-pink);
-        }
-
-        /* 代码线条背景 - 优化为CSS网格 */
-        .code-lines {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.1;
-            z-index: 0;
-            background-size: 20px 20px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-        }
-
-        /* 电路线效果 - 优化动画性能 */
-        .circuit-lines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .circuit-line {
-            position: absolute;
-            background: rgba(1, 200, 238, 0.1);
-            overflow: hidden;
-        }
-
-        .circuit-line::before {
-            content: '';
-            position: absolute;
-            top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(1, 200, 238, 0.5), transparent);
-            animation: circuitPulse 3s infinite linear;
-            will-change: transform;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
         }
 
-        @keyframes circuitPulse {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(300%); }
+        .btn:hover::before {
+            left: 100%;
         }
 
-        /* 故障效果 - 优化动画 */
-        .glitch {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            opacity: 0.1;
-            pointer-events: none;
-            z-index: 1;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
         }
 
-        .glitch span {
-            position: absolute;
-            background: rgba(255, 42, 109, 0.5);
-            width: 100%;
-            height: 5px;
-            animation: glitchEffect 4s infinite;
-            opacity: 0;
-            will-change: opacity, transform;
+        .btn-primary:hover {
+            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
         }
 
-        @keyframes glitchEffect {
-            0% {
-                opacity: 0;
-                transform: translateX(-100%);
-            }
-            0.5%, 1.5% {
-                opacity: 0.5;
-                transform: translateX(0);
-            }
-            2% {
-                opacity: 0;
-                transform: translateX(100%);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(100%);
-            }
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
-        /* 数字时钟 - 优化样式 */
-        .digital-clock {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 1rem;
-            color: var(--neon-green);
-            background: rgba(0, 0, 0, 0.5);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            border: 1px solid rgba(5, 255, 161, 0.3);
-            text-shadow: 0 0 5px var(--neon-green);
-            letter-spacing: 2px;
-            backdrop-filter: blur(5px);
-            transition: all var(--transition-fast) ease;
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: white;
+            box-shadow: 0 4px 10px rgba(236, 72, 153, 0.2);
         }
 
-        .digital-clock:hover {
-            box-shadow: 0 0 10px var(--neon-green);
-            transform: scale(1.05);
+        .btn-secondary:hover {
+            box-shadow: 0 6px 15px rgba(236, 72, 153, 0.3);
+            transform: translateY(-2px);
         }
 
-        /* 页脚样式 - 优化布局 */
-        footer {
-            margin-top: 6rem;
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            margin-right: var(--spacing-xs);
+        }
+
+        /* 特性部分 */
+        .features {
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .section-title {
             text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.8rem;
-            letter-spacing: 1.5px;
+            margin-bottom: var(--spacing-2xl);
             position: relative;
-            z-index: 5;
-            padding: 2rem 0;
-            width: 100%;
         }
 
-        footer::before {
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 200px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: var(--radius-full);
         }
 
-        footer a {
-            position: relative;
-            transition: all var(--transition-fast) ease;
-            color: inherit;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            background: var(--bg-secondary);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal) ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--spacing-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            border-radius: var(--radius-full);
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-item:nth-child(2) .feature-icon {
+            background: linear-gradient(135deg, var(--secondary-light), var(--secondary));
+        }
+
+        .feature-item:nth-child(3) .feature-icon {
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .feature-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* 统计数字 */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            margin: var(--spacing-3xl) 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: var(--spacing-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: transform var(--transition-normal) ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-2xl) 0;
+            margin-top: var(--spacing-3xl);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.2rem;
             text-decoration: none;
         }
 
-        footer a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--neon-blue);
-            transition: width var(--transition-fast) ease;
+        .footer-links {
+            display: flex;
+            gap: var(--spacing-lg);
         }
 
-        footer a:hover {
-            color: var(--neon-blue);
-            text-shadow: 0 0 5px var(--neon-blue);
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-fast) ease;
         }
 
-        footer a:hover::after {
-            width: 100%;
+        .footer-link:hover {
+            color: var(--primary);
         }
 
-        /* 响应式设计优化 */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            .subtitle {
-                font-size: 1rem;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .card {
-                padding: 1.5rem;
-            }
-            .nebula {
-                opacity: 0.2;
-            }
-            .orbit {
-                display: none;
-            }
-            .digital-clock {
-                top: 10px;
-                right: 10px;
-                font-size: 0.8rem;
-                padding: 0.3rem 0.8rem;
-            }
+        .footer-copyright {
+            margin-top: var(--spacing-lg);
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            .container {
-                padding: 1rem;
-            }
-            .digital-clock {
-                position: relative;
-                top: auto;
-                right: auto;
-                margin: 1rem auto;
-                display: inline-block;
-            }
-            .card-icon {
-                font-size: 2.5rem;
-            }
-            .card h2 {
-                font-size: 1.5rem;
-            }
-            header {
-                margin-bottom: 2rem;
-            }
-            footer {
-                margin-top: 3rem;
-            }
+        .footer-copyright a {
+            color: var(--primary);
+            text-decoration: none;
         }
 
-        /* 添加加载动画 */
+        /* 数字时钟 */
+        .digital-clock {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            z-index: 100;
+            transition: all var(--transition-normal) ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .digital-clock:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* 主题切换按钮 */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            z-index: 100;
+            transition: all var(--transition-normal) ease;
+            border: none;
+            outline: none;
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* 加载动画 */
         .loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--darker-bg);
+            background: var(--bg-primary);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -781,21 +749,175 @@
         }
 
         .loader-content {
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-md);
         }
 
         .loader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid transparent;
-            border-top-color: var(--neon-blue);
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(99, 102, 241, 0.3);
             border-radius: 50%;
+            border-top-color: var(--primary);
             animation: spin 1s linear infinite;
+        }
+
+        .loader-text {
+            color: var(--primary);
+            font-weight: 500;
         }
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        /* 动画类 */
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .fade-in-left {
+            animation: fadeInLeft 1s ease forwards;
+        }
+
+        .fade-in-right {
+            animation: fadeInRight 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            :root {
+                --spacing-xl: 1.5rem;
+                --spacing-2xl: 2rem;
+                --spacing-3xl: 3rem;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .nav-links {
+                gap: var(--spacing-md);
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: var(--spacing-lg);
+                text-align: center;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+
+            .digital-clock {
+                position: static;
+                margin: 0 auto var(--spacing-lg);
+                display: inline-block;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .theme-toggle {
+                bottom: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                                font-size: 1rem;
+            }
+        }
+
+        /* 无障碍性增强 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* 打印样式 */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .digital-clock,
+            .theme-toggle,
+            .background,
+            .btn {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -804,72 +926,193 @@
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-spinner"></div>
+            <div class="loader-text">加载中...</div>
         </div>
     </div>
 
     <!-- 背景效果 -->
-    <div class="stars-container" id="stars-container"></div>
-    <div class="noise"></div>
-    <div class="code-lines"></div>
-    <div class="circuit-lines">
-        <div class="circuit-line"></div>
-        <div class="circuit-line"></div>
-        <div class="circuit-line"></div>
-        <div class="circuit-line"></div>
-        <div class="circuit-line"></div>
-        <div class="circuit-line"></div>
-        <div class="circuit-line"></div>
-    </div>
-    
-    <!-- 星云效果 -->
-    <div class="nebula" style="width: 600px; height: 600px; top: -100px; left: -100px; background: var(--nebula-color1);"></div>
-    <div class="nebula" style="width: 500px; height: 500px; bottom: -100px; right: -100px; background: var(--nebula-color2); animation-delay: -15s;"></div>
-    <div class="nebula" style="width: 400px; height: 400px; top: 50%; right: -150px; background: var(--nebula-color3); animation-delay: -7s;"></div>
-    
-    <!-- 行星轨道 -->
-    <div class="orbit" style="width: 800px; height: 800px; top: 50%; left: 10%; transform: translate(-50%, -50%);">
-        <div class="planet" style="width: 20px; height: 20px; background: var(--neon-blue); top: 0%; left: 50%; --glow-color: var(--neon-blue);"></div>
-    </div>
-    <div class="orbit" style="width: 400px; height: 400px; top: 20%; right: 10%; transform: translate(50%, -50%); animation-duration: 40s;">
-        <div class="planet" style="width: 15px; height: 15px; background: var(--neon-pink); bottom: 0%; left: 50%; --glow-color: var(--neon-pink);"></div>
-    </div>
-    
-    <div class="glitch">
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="background">
+        <div class="particles-container" id="particles-container"></div>
+        <div class="grid-pattern"></div>
+        <div class="gradient-orb" style="width: 500px; height: 500px; top: -100px; left: -100px; --orb-color: var(--primary-light);"></div>
+        <div class="gradient-orb" style="width: 600px; height: 600px; bottom: -200px; right: -200px; --orb-color: var(--secondary-light);"></div>
+        <div class="gradient-orb" style="width: 300px; height: 300px; top: 40%; right: 10%; --orb-color: var(--accent-light);"></div>
     </div>
 
+    <!-- 数字时钟 -->
+    <div class="digital-clock" id="clock">00:00:00</div>
+
+    <!-- 主题切换按钮 -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="切换主题">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="container">
-        <div class="digital-clock" id="clock">00:00:00</div>
-        <header>
-            <h1>Free AI</h1>
-            <p class="subtitle">探索未来 · 释放创造力</p>
-        </header>
-        <div class="grid">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-icon">🎨</span>
-                    <h2>AI图像生成</h2>
-                    <p>将你的想法转化为视觉艺术。只需输入文本描述，AI将为你创造令人惊叹的图像。支持多种风格和高分辨率导出。</p>
-                    <a href="https://pollinationsai.vercel.app/draw" class="btn" aria-label="生成AI图像">生成图像</a>
-                </div>
-                <div class="star-dust" id="dust-1"></div>
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <span class="logo-icon"><i class="fas fa-brain"></i></span>
+                <span>FreeAI</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">特性</a>
+                <a href="#tools" class="nav-link">工具</a>
+                <a href="#about" class="nav-link">关于</a>
+                <a href="https://musifei.live" target="_blank" rel="noopener noreferrer" class="nav-link">博客</a>
             </div>
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-icon">🔊</span>
-                    <h2>AI语音合成</h2>
-                    <p>将文本转换为逼真的语音。支持多种语言和声音风格，适用于创作内容、教育材料或个人使用。</p>
-                    <a href="https://pollinationsai.vercel.app/tts" class="btn" aria-label="转换AI语音">转换语音</a>
+        </nav>
+
+        <!-- 英雄区域 -->
+        <section class="hero">
+            <h1 class="hero-title">
+                <span>F</span><span>r</span><span>e</span><span>e</span><span>A</span><span>I</span>
+            </h1>
+            <p class="hero-subtitle">探索无限可能，释放创造力。基于 Pollinations.AI 的免费人工智能工具，为你的创意项目提供支持。</p>
+            <div class="hero-buttons">
+                <a href="#tools" class="btn btn-primary">
+                    <i class="fas fa-rocket btn-icon"></i>开始使用
+                </a>
+                <a href="#features" class="btn btn-outline">
+                    <i class="fas fa-info-circle btn-icon"></i>了解更多
+                </a>
+            </div>
+        </section>
+
+        <!-- 特性部分 -->
+        <section class="features" id="features">
+            <div class="section-title">
+                <h2>为什么选择 FreeAI</h2>
+                <p>我们提供直观、高效的AI工具，帮助你实现创意构想</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">完全免费</h3>
+                    <p class="feature-text">所有工具均可免费使用，无需注册账号或提供信用卡信息。</p>
                 </div>
-                <div class="star-dust" id="dust-2"></div>
+                <div class="feature-item fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">注重隐私</h3>
+                    <p class="feature-text">我们不会存储您的数据或创作内容，保障您的隐私安全。</p>
+                </div>
+                <div class="feature-item fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="feature-title">高质量输出</h3>
+                    <p class="feature-text">基于先进的AI模型，生成高质量的图像和自然流畅的语音。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 统计数字 -->
+        <section class="stats">
+            <div class="stat-item fade-in-up" style="animation-delay: 0.1s;">
+                <div class="stat-number" data-count="10000">0</div>
+                <div class="stat-label">每日用户</div>
+            </div>
+            <div class="stat-item fade-in-up" style="animation-delay: 0.2s;">
+                <div class="stat-number" data-count="500000">0</div>
+                <div class="stat-label">已生成图像</div>
+            </div>
+            <div class="stat-item fade-in-up" style="animation-delay: 0.3s;">
+                <div class="stat-number" data-count="98">0</div>
+                <div class="stat-label">用户满意度 (%)</div>
+            </div>
+        </section>
+
+        <!-- 工具卡片 -->
+        <section id="tools">
+            <div class="section-title">
+                <h2>我们的工具</h2>
+                <p>强大的AI工具，助力你的创意项目</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card fade-in-left" style="animation-delay: 0.1s;">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 class="card-title">AI图像生成</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">将你的想法转化为视觉艺术。只需输入文本描述，AI将为你创造令人惊叹的图像。支持多种风格和高分辨率导出。</p>
+                        <ul>
+                            <li>支持多种艺术风格</li>
+                            <li>高达4K分辨率输出</li>
+                            <li>批量生成功能</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://pollinationsai.vercel.app/draw" class="btn btn-primary" aria-label="生成AI图像">
+                            <i class="fas fa-arrow-right btn-icon"></i>开始创作
+                        </a>
+                    </div>
+                </div>
+                <div class="card fade-in-right" style="animation-delay: 0.2s;">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
+                        <h3 class="card-title">AI语音合成</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">将文本转换为逼真的语音。支持多种语言和声音风格，适用于创作内容、教育材料或个人使用。</p>
+                        <ul>
+                            <li>支持40+种语言</li>
+                            <li>多种声音风格选择</li>
+                            <li>情感语调调整</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://pollinationsai.vercel.app/tts" class="btn btn-secondary" aria-label="转换AI语音">
+                            <i class="fas fa-arrow-right btn-icon"></i>开始转换
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于部分 -->
+        <section id="about" class="fade-in-up" style="animation-delay: 0.3s;">
+            <div class="section-title">
+                <h2>关于我们</h2>
+                <p>FreeAI的使命与愿景</p>
+            </div>
+            <div style="background: var(--bg-secondary); padding: var(--spacing-xl); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border-color);">
+                <p style="margin-bottom: var(--spacing-md); line-height: 1.8;">
+                    FreeAI 由 <a href="https://musifei.live" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: none; font-weight: 500;">Musifei</a> 创建，旨在让先进的人工智能技术变得更加平易近人和易于使用。我们相信，创造力不应受到技术壁垒或经济限制的阻碍。
+                </p>
+                <p style="margin-bottom: var(--spacing-md); line-height: 1.8;">
+                    我们的平台基于 Pollinations.AI 构建，提供免费、高质量的AI工具，帮助艺术家、创作者、教育工作者和好奇的探索者释放他们的创造潜能。
+                </p>
+                <p style="line-height: 1.8;">
+                    无论您是专业创作者还是AI领域的新手，FreeAI都能为您提供直观、强大的工具，帮助您将想法转化为现实。
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="footer-logo">
+                <i class="fas fa-brain"></i> FreeAI
+            </a>
+            <div class="footer-links">
+                <a href="#" class="footer-link">隐私政策</a>
+                <a href="#" class="footer-link">使用条款</a>
+                <a href="mailto:contact@example.com" class="footer-link">联系我们</a>
             </div>
         </div>
-        <footer>
-            <p>© 2025 <a href="https://musifei.live" target="_blank" rel="noopener noreferrer">Musifei</a> | 基于 Pollinations.AI</p>
-        </footer>
-    </div>
+        <div class="footer-copyright">
+            © 2025 <a href="https://musifei.live" target="_blank" rel="noopener noreferrer">Musifei</a> | 基于 <a href="https://pollinations.ai" target="_blank" rel="noopener noreferrer">Pollinations.AI</a>
+        </div>
+    </footer>
 
     <script>
         // 模块化JavaScript代码
@@ -877,14 +1120,12 @@
             // 初始化应用
             init: function() {
                 this.setupLoader();
-                this.createStars();
-                this.createStarDust('dust-1', '#01c8ee');
-                this.createStarDust('dust-2', '#ff2a6d');
-                this.addCircuitEffects();
-                this.addMouseEffect();
+                this.createParticles();
                 this.startClock();
-                this.setupGlitchEffect();
-                this.setupParallaxEffect();
+                this.setupThemeToggle();
+                this.setupScrollAnimations();
+                this.setupCounters();
+                this.setupCardHover();
             },
 
             // 设置加载动画
@@ -900,96 +1141,63 @@
                 });
             },
 
-            // 创建星空背景
-            createStars: function() {
-                const starsContainer = document.getElementById('stars-container');
-                const starCount = window.innerWidth < 768 ? 50 : 100;
+            // 创建粒子效果
+            createParticles: function() {
+                const container = document.getElementById('particles-container');
+                const particleCount = window.innerWidth < 768 ? 30 : 50;
                 
-                // 创建星星 - 减少DOM元素数量以提高性能
-                for (let i = 0; i < starCount; i++) {
-                    const star = document.createElement('div');
-                    star.classList.add('star');
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // 随机大小
+                    const size = Math.random() * 6 + 2;
                     
                     // 随机位置
                     const x = Math.random() * 100;
                     const y = Math.random() * 100;
                     
-                    // 随机大小和亮度
-                    const size = Math.random() * 2 + 1;
-                    const opacity = Math.random() * 0.7 + 0.3;
+                    // 随机移动距离
+                    const moveX = (Math.random() - 0.5) * 30;
+                    const moveY = (Math.random() - 0.5) * 30;
+                    
+                    // 随机旋转
+                    const rotation = (Math.random() - 0.5) * 60;
                     
                     // 随机动画时间
-                    const duration = Math.random() * 3 + 2;
-                    const delay = Math.random() * 5;
+                    const duration = Math.random() * 15 + 10;
                     
-                    star.style.left = `${x}%`;
-                    star.style.top = `${y}%`;
-                    star.style.width = `${size}px`;
-                    star.style.height = `${size}px`;
-                    star.style.setProperty('--opacity', opacity);
-                    star.style.setProperty('--duration', `${duration}s`);
-                    star.style.setProperty('--delay', `${delay}s`);
+                    // 随机颜色
+                    const colorIndex = Math.floor(Math.random() * 3);
+                    let colorStart, colorEnd;
                     
-                    starsContainer.appendChild(star);
-                }
-                
-                // 创建流星 - 减少数量并优化动画
-                for (let i = 0; i < 3; i++) {
-                    const shootingStar = document.createElement('div');
-                    shootingStar.classList.add('shooting-star');
+                    if (colorIndex === 0) {
+                        colorStart = 'rgba(99, 102, 241, 0.6)';
+                        colorEnd = 'rgba(79, 70, 229, 0.6)';
+                    } else if (colorIndex === 1) {
+                        colorStart = 'rgba(236, 72, 153, 0.6)';
+                        colorEnd = 'rgba(219, 39, 119, 0.6)';
+                    } else {
+                        colorStart = 'rgba(20, 184, 166, 0.6)';
+                        colorEnd = 'rgba(13, 148, 136, 0.6)';
+                    }
                     
-                    // 随机位置和角度
-                    const y = Math.random() * 70;
-                    const rotate = Math.random() * 20 - 10;
-                    
-                    // 随机动画时间
-                    const duration = Math.random() * 10 + 15;
-                    const delay = Math.random() * 15;
-                    
-                    shootingStar.style.top = `${y}%`;
-                    shootingStar.style.right = `0`;
-                    shootingStar.style.transform = `rotate(${rotate}deg)`;
-                    shootingStar.style.setProperty('--duration', `${duration}s`);
-                    shootingStar.style.setProperty('--delay', `${delay}s`);
-                    
-                    starsContainer.appendChild(shootingStar);
-                }
-            },
-            
-            // 为卡片创建星尘效果
-            createStarDust: function(containerId, color) {
-                const container = document.getElementById(containerId);
-                if (!container) return;
-                
-                const particleCount = 20; // 减少粒子数量以提高性能
-                
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('dust-particle');
-                    
-                    // 随机位置
-                    const x = Math.random() * 100;
-                    const delay = Math.random() * 3;
-                    const size = Math.random() * 2 + 1;
-                    const opacity = Math.random() * 0.7 + 0.3;
-                    
-                    particle.style.left = `${x}%`;
-                    particle.style.bottom = `-5px`;
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
-                    particle.style.opacity = opacity;
-                    particle.style.animationDelay = `${delay}s`;
-                    
-                    if (color) {
-                        particle.style.background = color;
-                        particle.style.boxShadow = `0 0 3px ${color}`;
-                    }
+                    particle.style.left = `${x}%`;
+                    particle.style.top = `${y}%`;
+                    particle.style.setProperty('--move-x', `${moveX}px`);
+                    particle.style.setProperty('--move-y', `${moveY}px`);
+                    particle.style.setProperty('--rotation', `${rotation}deg`);
+                    particle.style.setProperty('--duration', `${duration}s`);
+                    particle.style.setProperty('--color-start', colorStart);
+                    particle.style.setProperty('--color-end', colorEnd);
                     
                     container.appendChild(particle);
                 }
             },
-            
-            // 更新数字时钟 - 使用requestAnimationFrame优化性能
+
+            // 更新数字时钟
             startClock: function() {
                 const updateClock = () => {
                     const now = new Date();
@@ -1002,155 +1210,149 @@
                         clockElement.textContent = `${hours}:${minutes}:${seconds}`;
                     }
                     
-                    // 使用setTimeout而不是setInterval，避免回调堆积
-                    setTimeout(() => {
-                        requestAnimationFrame(updateClock);
-                    }, 1000);
+                    requestAnimationFrame(() => {
+                        setTimeout(updateClock, 1000);
+                    });
                 };
                 
                 updateClock();
             },
-            
-            // 添加动态电路效果
-            addCircuitEffects: function() {
-                const lines = document.querySelectorAll('.circuit-line');
-                lines.forEach(line => {
-                    const delay = Math.random() * 10;
-                    const duration = 3 + Math.random() * 7;
-                    line.style.setProperty('animation-delay', `${delay}s`);
-                    line.style.setProperty('animation-duration', `${duration}s`);
-                });
-            },
-            
-            // 添加鼠标跟随效果 - 优化性能
-            addMouseEffect: function() {
-                let ticking = false;
-                let mouseX = 0.5;
-                let mouseY = 0.5;
+
+            // 设置主题切换
+            setupThemeToggle: function() {
+                const themeToggle = document.getElementById('theme-toggle');
+                const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
                 
-                document.addEventListener('mousemove', (e) => {
-                    mouseX = e.clientX / window.innerWidth;
-                    mouseY = e.clientY / window.innerHeight;
-                    
-                    if (!ticking) {
-                        requestAnimationFrame(() => {
-                            this.updateMouseEffects(mouseX, mouseY);
-                            ticking = false;
-                        });
-                        ticking = true;
+                // 检查本地存储中的主题偏好
+                const currentTheme = localStorage.getItem('theme');
+                
+                // 如果有存储的主题偏好，应用它
+                if (currentTheme === 'dark') {
+                    document.body.classList.add('dark-theme');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else if (currentTheme === 'light') {
+                    document.body.classList.remove('dark-theme');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                } else {
+                    // 如果没有存储的偏好，使用系统偏好
+                    if (prefersDarkScheme.matches) {
+                        document.body.classList.add('dark-theme');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
                     }
-                });
+                }
                 
-                // 添加触摸支持
-                document.addEventListener('touchmove', (e) => {
-                    if (e.touches.length > 0) {
-                        mouseX = e.touches[0].clientX / window.innerWidth;
-                        mouseY = e.touches[0].clientY / window.innerHeight;
-                        
-                        if (!ticking) {
-                            requestAnimationFrame(() => {
-                                this.updateMouseEffects(mouseX, mouseY);
-                                ticking = false;
-                            });
-                            ticking = true;
-                        }
-                    }
-                });
-            },
-            
-            // 更新鼠标效果 - 分离计算以优化性能
-            updateMouseEffects: function(mouseX, mouseY) {
-                const cards = document.querySelectorAll('.card');
-                
-                cards.forEach(card => {
-                    const rect = card.getBoundingClientRect();
-                    const cardCenterX = rect.left + rect.width / 2;
-                    const cardCenterY = rect.top + rect.height / 2;
-                    
-                    // 计算鼠标与卡片中心的距离
-                    const distX = (mouseX * window.innerWidth - cardCenterX) / 30;
-                    const distY = (mouseY * window.innerHeight - cardCenterY) / 30;
-                    
-                    // 计算距离
-                    const distance = Math.sqrt(distX * distX + distY * distY);
-                    
-                    // 限制倾斜角度
-                    const tiltX = Math.max(Math.min(distY, 5), -5);
-                    const tiltY = Math.max(Math.min(-distX, 5), -5);
-                    
-                    // 只有当鼠标靠近卡片时才应用效果
-                    if (distance < 100) {
-                        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-5px)`;
+                // 切换主题
+                themeToggle.addEventListener('click', () => {
+                    if (document.body.classList.contains('dark-theme')) {
+                        document.body.classList.remove('dark-theme');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                        localStorage.setItem('theme', 'light');
                     } else {
-                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                        document.body.classList.add('dark-theme');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                        localStorage.setItem('theme', 'dark');
                     }
                 });
+            },
+
+            // 设置滚动动画
+            setupScrollAnimations: function() {
+                // 使用Intersection Observer API检测元素是否在视口中
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
                 
-                // 行星跟随光标轻微移动
-                const planets = document.querySelectorAll('.planet');
-                planets.forEach(planet => {
-                    const moveX = (mouseX - 0.5) * 10;
-                    const moveY = (mouseY - 0.5) * 10;
-                    planet.style.marginLeft = `${moveX}px`;
-                    planet.style.marginTop = `${moveY}px`;
+                // 观察所有带有fade-in类的元素
+                document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right').forEach(element => {
+                    observer.observe(element);
                 });
                 
-                // 背景光效跟随 - 使用CSS变量优化
-                document.documentElement.style.setProperty('--mouse-x', mouseX * 100 + '%');
-                document.documentElement.style.setProperty('--mouse-y', mouseY * 100 + '%');
-                
-                document.body.style.backgroundImage = `
-                    radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, rgba(1, 200, 238, 0.2) 0%, transparent 50%),
-                    radial-gradient(circle at ${85 - mouseX * 30}% ${30 + mouseY * 40}%, rgba(174, 95, 248, 0.1) 0%, transparent 40%),
-                    radial-gradient(circle at ${15 + mouseX * 30}% ${70 - mouseY * 40}%, rgba(255, 42, 109, 0.1) 0%, transparent 40%)
-                `;
-            },
-            
-            // 设置故障效果
-            setupGlitchEffect: function() {
-                const randomGlitch = () => {
-                    const glitchElements = document.querySelectorAll('.glitch span');
-                    if (glitchElements.length === 0) return;
-                    
-                    const randomIndex = Math.floor(Math.random() * glitchElements.length);
-                    const randomElement = glitchElements[randomIndex];
-                    
-                    randomElement.style.opacity = '0.5';
-                    randomElement.style.transform = 'translateX(0)';
-                    
-                    setTimeout(() => {
-                        randomElement.style.opacity = '0';
-                        randomElement.style.transform = 'translateX(100%)';
-                    }, 100);
-                    
-                    // 随机间隔触发下一次故障效果
-                    setTimeout(randomGlitch, 3000 + Math.random() * 5000);
-                };
-                
-                // 延迟启动故障效果
-                setTimeout(randomGlitch, 2000);
-            },
-            
-            // 添加视差滚动效果
-            setupParallaxEffect: function() {
-                let ticking = false;
-                
-                window.addEventListener('scroll', () => {
-                    if (!ticking) {
-                        requestAnimationFrame(() => {
-                            const scrollY = window.scrollY;
-                            const nebulas = document.querySelectorAll('.nebula');
-                            
-                            nebulas.forEach((nebula, index) => {
-                                const speed = 0.1 + (index * 0.05);
-                                nebula.style.transform = `translate3d(0, ${scrollY * speed}px, 0) rotate(${scrollY * 0.02}deg)`;
+                // 平滑滚动到锚点
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        if (targetId === '#') return;
+                        
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
                             });
-                            
-                            ticking = false;
-                        });
-                        ticking = true;
-                    }
+                        }
+                    });
                 });
+            },
+
+            // 设置数字计数器动画
+            setupCounters: function() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const countElement = entry.target;
+                            const target = parseInt(countElement.getAttribute('data-count'), 10);
+                            const duration = 2000; // 动画持续时间（毫秒）
+                            const step = Math.ceil(target / (duration / 16)); // 每帧增加的数量
+                            
+                            let current = 0;
+                            const timer = setInterval(() => {
+                                current += step;
+                                if (current >= target) {
+                                    clearInterval(timer);
+                                    countElement.textContent = this.formatNumber(target);
+                                } else {
+                                    countElement.textContent = this.formatNumber(current);
+                                }
+                            }, 16);
+                            
+                            observer.unobserve(countElement);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                document.querySelectorAll('.stat-number').forEach(counter => {
+                    observer.observe(counter);
+                });
+            },
+
+            // 设置卡片悬停效果
+            setupCardHover: function() {
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('mousemove', e => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        const rotateX = (y - centerY) / 20;
+                        const rotateY = (centerX - x) / 20;
+                        
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+                        
+                        // 添加光泽效果
+                        const shine = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 80%)`;
+                        card.style.backgroundImage = shine;
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                        card.style.backgroundImage = 'none';
+                    });
+                });
+            },
+
+            // 格式化数字（添加千位分隔符）
+            formatNumber: function(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
         };
 
