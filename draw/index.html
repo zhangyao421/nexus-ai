@@ -4,14 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="shortcut icon" href="/favicon.ico">
+<link rel="shortcut icon" href="/favicon.ico">
     <title>Free AI 绘画生成器</title>
-    <!-- 添加字体 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- 添加图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #00a8ff;
@@ -22,17 +16,13 @@
             --accent-color: #00e4ff;
             --error-color: #ff3838;
             --success-color: #32ff7e;
-            --gradient-1: linear-gradient(135deg, #00a8ff, #00e4ff);
-            --gradient-2: linear-gradient(135deg, #00e4ff, #7d00ff);
-            --shadow-color: rgba(0, 228, 255, 0.3);
-            --card-border-radius: 18px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Noto Sans SC', 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
 
         body {
@@ -40,85 +30,53 @@
             color: var(--text-color);
             min-height: 100vh;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 168, 255, 0.08) 0%, transparent 30%),
-                radial-gradient(circle at 90% 80%, rgba(0, 228, 255, 0.08) 0%, transparent 30%),
-                radial-gradient(circle at 50% 50%, rgba(125, 0, 255, 0.05) 0%, transparent 60%);
+                radial-gradient(circle at 10% 20%, rgba(0, 168, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 228, 255, 0.1) 0%, transparent 20%);
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* 添加背景网格效果 */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(26, 38, 52, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(26, 38, 52, 0.3) 1px, transparent 1px);
-            background-size: 30px 30px;
-            z-index: -1;
-            opacity: 0.4;
-            pointer-events: none;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            position: relative;
-            z-index: 1;
         }
 
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
-            padding-bottom: 15px;
         }
 
         h1 {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), #7d00ff);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             position: relative;
             display: inline-block;
-            letter-spacing: 1px;
-            text-transform: uppercase;
         }
 
         h1::after {
             content: '';
             position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 3px;
-            background: var(--gradient-1);
-            border-radius: 3px;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
         }
 
         .subtitle {
-            color: rgba(228, 241, 254, 0.8);
-            font-size: 1.2rem;
-            font-weight: 300;
-            margin-bottom: 5px;
+            color: rgba(228, 241, 254, 0.7);
+            font-size: 1.1rem;
         }
 
         .main-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
-            margin-bottom: 40px;
         }
 
         @media (max-width: 768px) {
@@ -127,77 +85,34 @@
             }
         }
 
-        .control-panel, .preview-panel, .history-panel {
+        .control-panel {
             background-color: var(--card-bg);
-            border-radius: var(--card-border-radius);
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .control-panel:hover, .preview-panel:hover, .history-panel:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 15px var(--shadow-color);
-        }
-
-        /* 添加卡片顶部渐变边框 */
-        .control-panel::before, .preview-panel::before, .history-panel::before {
+        .control-panel::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: var(--gradient-1);
-            z-index: 1;
-        }
-
-        .preview-panel::before {
-            background: var(--gradient-2);
-        }
-
-        /* 添加卡片内发光效果 */
-        .control-panel::after, .preview-panel::after, .history-panel::after {
-            content: '';
-            position: absolute;
-            top: 4px;
-            left: 0;
-            right: 0;
-            height: 30px;
-            background: linear-gradient(to bottom, 
-                rgba(0, 228, 255, 0.1) 0%, 
-                rgba(0, 228, 255, 0) 100%);
-            opacity: 0.5;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
         }
 
         .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group h4 {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            color: var(--accent-color);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-        }
-
-        .form-group h4 i {
-            margin-right: 8px;
-            font-size: 1rem;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 500;
             color: var(--accent-color);
-            font-size: 0.95rem;
         }
 
         input[type="text"],
@@ -205,14 +120,13 @@
         textarea,
         select {
             width: 100%;
-            padding: 14px 18px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 168, 255, 0.2);
-            background-color: rgba(12, 24, 36, 0.6);
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 168, 255, 0.3);
+            background-color: rgba(26, 38, 52, 0.8);
             color: var(--text-color);
             font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         input[type="text"]:focus,
@@ -221,82 +135,33 @@
         select:focus {
             outline: none;
             border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(0, 228, 255, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 0 2px rgba(0, 228, 255, 0.2);
         }
 
         textarea {
-            min-height: 120px;
+            min-height: 100px;
             resize: vertical;
-            line-height: 1.5;
         }
 
         .checkbox-group {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
-            cursor: pointer;
         }
 
-        /* 自定义复选框样式 */
         .checkbox-group input[type="checkbox"] {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-        }
-
-        .checkbox-group .checkbox-custom {
-            position: relative;
-            display: inline-block;
-            width: 22px;
-            height: 22px;
             margin-right: 10px;
-            background-color: rgba(12, 24, 36, 0.6);
-            border: 1px solid rgba(0, 168, 255, 0.3);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .checkbox-group:hover .checkbox-custom {
-            border-color: var(--accent-color);
-        }
-
-        .checkbox-group input:checked ~ .checkbox-custom {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-        }
-
-        .checkbox-group .checkbox-custom:after {
-            content: '';
-            position: absolute;
-            display: none;
-            left: 8px;
-            top: 4px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
-        }
-
-        .checkbox-group input:checked ~ .checkbox-custom:after {
-            display: block;
-        }
-
-        .checkbox-group label {
-            margin-bottom: 0;
-            cursor: pointer;
-            user-select: none;
-            color: var(--text-color);
+            accent-color: var(--accent-color);
+            width: 18px;
+            height: 18px;
         }
 
         button {
-            background: var(--gradient-1);
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
             color: white;
             border: none;
-            padding: 14px 28px;
-            border-radius: 12px;
+            padding: 12px 25px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
@@ -305,60 +170,46 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 15px rgba(0, 168, 255, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* 添加按钮悬停效果 */
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.2), 
-                transparent);
-            transition: left 0.7s ease;
         }
 
         button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 228, 255, 0.5);
-        }
-
-        button:hover::before {
-            left: 100%;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 228, 255, 0.5);
         }
 
         button:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 10px rgba(0, 168, 255, 0.4);
         }
 
         button i {
-            margin-right: 10px;
-            font-size: 1.1rem;
+            margin-right: 8px;
         }
 
         .button-group {
             display: flex;
             gap: 15px;
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
-        /* 次要按钮样式 */
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: none;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .preview-panel {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+        .preview-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
         }
 
         .image-container {
@@ -366,14 +217,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 350px;
+            min-height: 300px;
             background-color: rgba(12, 24, 36, 0.5);
-            border-radius: 14px;
+            border-radius: 10px;
             margin-bottom: 20px;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
         }
 
         .image-container img {
@@ -381,14 +230,8 @@
             max-height: 100%;
             object-fit: contain;
             border-radius: 8px;
-            transition: transform 0.3s ease;
         }
 
-        .image-container:hover img {
-            transform: scale(1.02);
-        }
-
-        /* 改进加载动画 */
         .loading-indicator {
             position: absolute;
             top: 0;
@@ -404,97 +247,56 @@
         }
 
         .spinner {
-            width: 60px;
-            height: 60px;
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .spinner:before, .spinner:after {
-            content: '';
-            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 228, 255, 0.3);
             border-radius: 50%;
-        }
-
-        .spinner:before {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            animation: spin 1s linear infinite;
-        }
-
-        .spinner:after {
-            width: 80%;
-            height: 80%;
-            background: rgba(12, 24, 36, 0.9);
-            top: 10%;
-            left: 10%;
-            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 15px;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
-        .loading-text {
-            font-size: 1rem;
-            margin-top: 10px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
         .image-info {
-            background-color: rgba(12, 24, 36, 0.7);
-            padding: 18px;
-            border-radius: 14px;
+            background-color: rgba(26, 38, 52, 0.8);
+            padding: 15px;
+            border-radius: 10px;
             font-size: 0.9rem;
             max-height: 150px;
             overflow-y: auto;
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .image-info pre {
             white-space: pre-wrap;
             word-break: break-all;
-            color: rgba(228, 241, 254, 0.9);
-            font-family: 'Consolas', monospace;
-            line-height: 1.5;
         }
 
         .image-actions {
             display: flex;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
         }
 
         .image-actions button {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
         }
 
-        /* 改进通知样式 */
         .notification {
             position: fixed;
             top: 20px;
             right: 20px;
-            padding: 18px 25px;
-            border-radius: 12px;
+            padding: 15px 25px;
+            border-radius: 8px;
             color: white;
             font-weight: 500;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             z-index: 1000;
             transform: translateX(150%);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
+            transition: transform 0.3s ease;
         }
 
         .notification.show {
@@ -509,64 +311,42 @@
             background-color: var(--success-color);
         }
 
-        .notification i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        /* 改进装饰元素 */
         .glow-effect {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
-            opacity: 0.08;
-            filter: blur(30px);
-            animation: float 15s ease-in-out infinite;
+            opacity: 0.1;
+            filter: blur(20px);
+            animation: float 8s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(40px, -40px); }
-            50% { transform: translate(0, -80px); }
-            75% { transform: translate(-40px, -40px); }
+            50% { transform: translate(30px, -30px); }
         }
 
         .model-info {
-            margin-top: 12px;
-            font-size: 0.9rem;
-            color: rgba(228, 241, 254, 0.7);
-            padding: 10px;
-            border-radius: 8px;
-            background-color: rgba(0, 168, 255, 0.1);
-            border-left: 3px solid var(--primary-color);
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: rgba(228, 241, 254, 0.6);
         }
 
         .parameter-tips {
             font-size: 0.85rem;
             color: rgba(228, 241, 254, 0.6);
-            margin-top: 8px;
-            display: flex;
-            align-items: flex-start;
+            margin-top: 5px;
         }
 
-        .parameter-tips i {
-            margin-right: 6px;
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            margin-top: 2px;
-        }
-
-        /* 改进科技感装饰 */
+        /* 科技感装饰 */
         .tech-decoration {
             position: absolute;
-            font-family: 'Consolas', monospace;
-            color: rgba(0, 228, 255, 0.15);
+            font-family: monospace;
+            color: rgba(0, 228, 255, 0.2);
             pointer-events: none;
             user-select: none;
             z-index: -1;
-            line-height: 1.5;
         }
 
         .tech-decoration.top-left {
@@ -582,177 +362,80 @@
             text-align: right;
         }
 
-        /* 改进历史记录样式 */
+        /* 历史记录样式 */
         .history-panel {
-            margin-top: 40px;
-        }
-
-        .history-title {
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .history-title h3 {
-            font-size: 1.5rem;
-            color: var(--text-color);
+            margin-top: 30px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             position: relative;
-            padding-bottom: 8px;
-        }
-
-        .history-title h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gradient-2);
-            border-radius: 3px;
-        }
-
-        .history-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .history-item {
-            background-color: rgba(12, 24, 36, 0.7);
-            border-radius: 14px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .history-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px var(--shadow-color);
-            z-index: 2;
-        }
-
-        .history-item::before {
+        .history-panel::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 3px;
-            background: var(--gradient-1);
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color), var(--accent-color));
         }
 
-        .history-item:hover::before {
-            opacity: 1;
+        .history-title {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .history-item {
+            background-color: rgba(26, 38, 52, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .history-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .history-item img {
             width: 100%;
             aspect-ratio: 1/1;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .history-item:hover img {
-            transform: scale(1.05);
         }
 
         .history-item-info {
-            padding: 15px;
-            font-size: 0.9rem;
-            background-color: rgba(26, 38, 52, 0.95);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            font-size: 0.8rem;
         }
 
         .history-item-prompt {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: 8px;
-            color: rgba(228, 241, 254, 0.9);
+            margin-bottom: 5px;
         }
 
         .history-item-model {
             color: var(--accent-color);
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .history-item-model i {
-            margin-right: 5px;
         }
 
         .empty-history {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px;
             color: rgba(228, 241, 254, 0.5);
-            background-color: rgba(12, 24, 36, 0.3);
-            border-radius: 14px;
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-        }
-
-        .empty-history i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            opacity: 0.5;
-        }
-
-        /* 改进表单布局 */
-        .form-row {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-col {
-            flex: 1;
-        }
-
-        /* 添加页脚样式 */
-        .footer {
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-            color: rgba(228, 241, 254, 0.6);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-
-        /* 添加滚动条样式 */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(12, 24, 36, 0.5);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(0, 168, 255, 0.3);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 228, 255, 0.5);
         }
 
         /* 响应式调整 */
@@ -762,7 +445,7 @@
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .main-content {
@@ -770,7 +453,7 @@
             }
             
             .control-panel, .preview-panel, .history-panel {
-                padding: 20px;
+                padding: 15px;
             }
             
             .button-group {
@@ -780,198 +463,21 @@
             .history-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
+        }
+/* 取消所有元素的滚动条 */
+::-webkit-scrollbar {
+    display: none; /* Chrome, Safari 和 Opera */
+}
 
-            .form-row {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
+/* Firefox 则使用 */
+.no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+}
 
-        /* 科技感返回按钮 */
-        .sci-fi-btn {
-            position: relative;
-            padding: 8px 16px;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1em;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #00f3ff;
-            background: rgba(10, 10, 46, 0.8);
-            border: 2px solid #3d3dff;
-            border-radius: 8px;
-            cursor: pointer;
-            overflow: hidden;
-            transition: 0.5s;
-            text-shadow: 0 0 10px #00f3ff;
-            box-shadow: 0 0 20px rgba(61, 61, 255, 0.3);
-            backdrop-filter: blur(5px);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 15px;
-        }
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari 和 Opera */
+}
 
-        .sci-fi-btn i {
-            margin-right: 8px;
-        }
-
-        .sci-fi-btn:hover {
-            background: #13134e;
-            box-shadow: 0 0 30px rgba(61, 61, 255, 0.6);
-            transform: scale(1.05);
-            color: #ffffff;
-        }
-
-        .sci-fi-btn:hover::before {
-            left: 100%;
-        }
-
-        .sci-fi-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .sci-fi-btn:active {
-            transform: scale(0.95);
-            transition: 0.1s;
-        }
-
-        /* 无滚动条类 */
-        .no-scrollbar {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* 添加卡片标题样式 */
-        .panel-title {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            color: var(--text-color);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .panel-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gradient-1);
-            border-radius: 3px;
-        }
-
-        .panel-title i {
-            margin-right: 10px;
-            color: var(--accent-color);
-        }
-
-        /* 添加提示词示例样式 */
-        .prompt-examples {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .prompt-tag {
-            background: rgba(0, 168, 255, 0.1);
-            border: 1px solid rgba(0, 168, 255, 0.2);
-            border-radius: 20px;
-            padding: 6px 12px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .prompt-tag:hover {
-            background: rgba(0, 228, 255, 0.2);
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-        }
-
-        /* 添加图像生成进度条 */
-        .progress-bar {
-            height: 4px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-            margin-top: 15px;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            background: var(--gradient-1);
-            width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-        /* 添加图像悬停效果 */
-        .preview-image-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .preview-image-wrapper:hover .image-overlay {
-            opacity: 1;
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(12, 24, 36, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .image-overlay-actions {
-            display: flex;
-            gap: 15px;
-        }
-
-        .overlay-btn {
-            background: rgba(0, 168, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(0, 228, 255, 0.3);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(3px);
-        }
-
-        .overlay-btn:hover {
-            background: rgba(0, 228, 255, 0.4);
-            transform: scale(1.1);
-        }
     </style>
 </head>
 <body>
@@ -992,44 +498,94 @@
         
         <div class="glow-effect" style="top: 10%; left: 20%;"></div>
         <div class="glow-effect" style="bottom: 30%; right: 10%;"></div>
-        <div class="glow-effect" style="top: 60%; left: 80%;"></div>
         
         <header>
             <h1>Free AI绘画生成器</h1>
             <p class="subtitle">基于Pollinations AI的高级图像生成系统</p>
-            <a href="https://pollinationsai.vercel.app" class="sci-fi-btn" style="text-decoration: none;">
-                <i class="fas fa-home"></i> 返回首页
-            </a>
+<br><br>
+
+
+<style>
+.sci-fi-btn {
+    position: relative;
+    padding: 4px 8px;
+    font-family: 'Arial', sans-serif;
+    font-size: 1em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #00f3ff;
+    background: #0a0a2e;
+    border: 2px solid #3d3dff;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.5s;
+    text-shadow: 0 0 10px #00f3ff;
+    box-shadow: 0 0 20px rgba(61, 61, 255, 0.3);
+}
+
+.sci-fi-btn:hover {
+    background: #13134e;
+    box-shadow: 0 0 30px rgba(61, 61, 255, 0.6);
+    transform: scale(1.05);
+    color: #ffffff;
+}
+
+
+
+.sci-fi-btn:hover::before {
+    left: 100%;
+}
+
+
+
+.glowing-border:nth-child(1) {
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #3d3dff);
+    animation: borderTop 2s linear infinite;
+}
+
+@keyframes borderTop {
+    0% { left: -2px; }
+    100% { left: 100%; }
+}
+
+/* 添加点击动画 */
+.sci-fi-btn:active {
+    transform: scale(0.45);
+    transition: 0.1s;
+}
+
+</style>
+
+<a href="https://pollinationsai.vercel.app" class="sci-fi-btn" style="text-decoration: none;">
+    <!-- 添加流光边框 -->
+    <span class="glowing-border"></span>
+    <span class="glowing-border"></span>
+    返回首页
+</a>
+
         </header>
         
         <div class="main-content">
             <div class="control-panel">
-                <h3 class="panel-title"><i class="fas fa-sliders-h"></i> 控制面板</h3>
-                
                 <div class="form-group">
-                    <h4><i class="fas fa-magic"></i> 提示词 (Prompt)</h4>
-                    <textarea id="prompt" placeholder="描述你想要生成的图像内容，越详细越好..."></textarea>
-                    <div class="parameter-tips">
-                        <i class="fas fa-lightbulb"></i> 提示：使用详细、具体的描述可以获得更好的结果。尝试描述风格、场景、颜色等细节。
-                    </div>
-                    
-                    <div class="prompt-examples">
-                        <div class="prompt-tag" data-prompt="一个未来城市的夜景，霓虹灯，赛博朋克风格">赛博朋克城市</div>
-                        <div class="prompt-tag" data-prompt="一只可爱的猫咪，坐在窗台上，阳光照射，写实风格">写实猫咪</div>
-                        <div class="prompt-tag" data-prompt="梦幻森林，魔法光芒，仙女，幻想风格">魔法森林</div>
-                    </div>
+                    <label for="prompt">提示词 (Prompt)</label>
+                    <textarea id="prompt" placeholder="描述你想要生成的图像内容..."></textarea>
+                                        <div class="parameter-tips">提示：使用详细、具体的描述可以获得更好的结果。尝试描述风格、场景、颜色等细节。</div>
                 </div>
                 
                 <div class="form-group">
-                    <h4><i class="fas fa-ban"></i> 负面提示词 (Negative Prompt)</h4>
-                    <input type="text" id="negative-prompt" placeholder="描述你不希望出现在图像中的内容..." value="worst quality, blurry, distorted, deformed">
-                    <div class="parameter-tips">
-                        <i class="fas fa-lightbulb"></i> 提示：用于排除不想要的元素，如"模糊的、低质量的、变形的"等。
-                    </div>
+                    <label for="negative-prompt">负面提示词 (Negative Prompt)</label>
+                    <input type="text" id="negative-prompt" placeholder="描述你不希望出现在图像中的内容..." value="worst quality, blurry">
+                    <div class="parameter-tips">提示：用于排除不想要的元素，如"模糊的、低质量的"等。</div>
                 </div>
                 
                 <div class="form-group">
-                    <h4><i class="fas fa-robot"></i> 模型选择</h4>
+                    <label for="model">模型选择</label>
                     <select id="model">
                         <option value="flux">Flux (通用型)</option>
                         <option value="FLUX-3D">FLUX-3D (3D渲染风格)</option>
@@ -1039,94 +595,63 @@
                         <option value="Flux-cablyai">Flux-cablyai (特殊风格)</option>
                         <option value="turbo">Turbo (快速生成)</option>
                     </select>
-                    <div class="model-info" id="model-info">
-                        <i class="fas fa-info-circle"></i> Flux: 通用型模型，适合大多数场景
-                    </div>
+                    <div class="model-info" id="model-info">Flux: 通用型模型，适合大多数场景</div>
                 </div>
                 
                 <div class="form-group">
-                    <h4><i class="fas fa-crop-alt"></i> 图像尺寸</h4>
-                    <div class="form-row">
-                        <div class="form-col">
+                    <div class="form-row" style="display: flex; gap: 15px;">
+                        <div style="flex: 1;">
                             <label for="width">宽度</label>
                             <input type="number" id="width" min="64" max="1920" step="8" value="720">
                         </div>
-                        <div class="form-col">
+                        <div style="flex: 1;">
                             <label for="height">高度</label>
                             <input type="number" id="height" min="64" max="1920" step="8" value="1280">
                         </div>
                     </div>
-                    <div class="parameter-tips">
-                        <i class="fas fa-lightbulb"></i> 提示：推荐使用8的倍数，最大尺寸取决于模型限制。
-                    </div>
-                    
-                    <!-- 添加快速尺寸选择按钮 -->
-                    <div class="prompt-examples">
-                        <div class="prompt-tag size-preset" data-width="512" data-height="512">正方形 (512×512)</div>
-                        <div class="prompt-tag size-preset" data-width="720" data-height="1280">竖版 (720×1280)</div>
-                        <div class="prompt-tag size-preset" data-width="1280" data-height="720">横版 (1280×720)</div>
-                    </div>
+                    <div class="parameter-tips">提示：推荐使用8的倍数，最大尺寸取决于模型限制。</div>
                 </div>
                 
                 <div class="form-group">
-                    <h4><i class="fas fa-random"></i> 种子值 (Seed)</h4>
+                    <label for="seed">种子值 (Seed)</label>
                     <div style="display: flex; gap: 10px;">
                         <input type="number" id="seed" min="-1" max="2147483647" value="-1" style="flex: 1;">
-                        <button id="random-seed" class="btn-secondary" style="padding: 12px 15px;">
-                            <i class="fas fa-dice"></i> 随机
-                        </button>
+                        <button id="random-seed" style="padding: 12px 15px;">随机</button>
                     </div>
-                    <div class="parameter-tips">
-                        <i class="fas fa-lightbulb"></i> 提示：使用相同的种子值可以生成相似的图像，-1表示随机种子。
-                    </div>
+                    <div class="parameter-tips">提示：使用相同的种子值可以生成相似的图像，-1表示随机种子。</div>
                 </div>
                 
                 <div class="form-group">
-                    <h4><i class="fas fa-cog"></i> 高级选项</h4>
-                    <label class="checkbox-group">
+                    <div class="checkbox-group">
                         <input type="checkbox" id="nologo">
-                        <span class="checkbox-custom"></span>
-                        移除水印
-                    </label>
+                        <label for="nologo" style="display: inline;">移除水印</label>
+                    </div>
                     
-                    <label class="checkbox-group">
+                    <div class="checkbox-group">
                         <input type="checkbox" id="safe" checked>
-                        <span class="checkbox-custom"></span>
-                        安全模式 (过滤不适内容)
-                    </label>
+                        <label for="safe" style="display: inline;">安全模式 (过滤不适内容)</label>
+                    </div>
                 </div>
                 
                 <div class="button-group">
                     <button id="generate-btn" style="flex: 2;">
-                        <i class="fas fa-paint-brush"></i> 生成图像
+                        <i>🎨</i> 生成图像
                     </button>
-                    <button id="clear-btn" class="btn-secondary">
-                        <i class="fas fa-trash-alt"></i> 清空
+                    <button id="clear-btn" style="background: rgba(255, 255, 255, 0.1); box-shadow: none;">
+                        <i>🗑️</i> 清空
                     </button>
                 </div>
             </div>
             
             <div class="preview-panel">
-                <h3 class="panel-title"><i class="fas fa-image"></i> 图像预览</h3>
+                <h3 style="margin-bottom: 15px;">图像预览</h3>
                 <div class="image-container">
                     <div id="loading" class="loading-indicator" style="display: none;">
                         <div class="spinner"></div>
-                        <div class="loading-text">正在生成您的艺术作品...</div>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill" id="progress-fill"></div>
-                        </div>
+                        <div>正在生成图像...</div>
                     </div>
-                    <div class="preview-image-wrapper">
-                        <img id="preview-image" style="display: none;">
-                        <div class="image-overlay">
-                            <div class="image-overlay-actions">
-                                <div class="overlay-btn" id="zoom-btn"><i class="fas fa-search-plus"></i></div>
-                                <div class="overlay-btn" id="quick-download-btn"><i class="fas fa-download"></i></div>
-                            </div>
-                        </div>
-                    </div>
+                    <img id="preview-image" style="display: none;">
                     <div id="placeholder-text" style="color: rgba(228, 241, 254, 0.5); text-align: center;">
-                        <i class="fas fa-image" style="font-size: 3rem; margin-bottom: 15px; display: block; opacity: 0.3;"></i>
                         点击"生成图像"按钮开始创作
                     </div>
                 </div>
@@ -1137,13 +662,10 @@
                 
                 <div class="image-actions" id="image-actions" style="display: none;">
                     <button id="download-btn">
-                        <i class="fas fa-download"></i> 下载图像
+                        <i>💾</i> 下载图像
                     </button>
                     <button id="copy-prompt-btn">
-                        <i class="fas fa-clipboard"></i> 复制提示词
-                    </button>
-                    <button id="regenerate-btn" class="btn-secondary">
-                        <i class="fas fa-redo-alt"></i> 重新生成
+                        <i>📋</i> 复制提示词
                     </button>
                 </div>
             </div>
@@ -1151,58 +673,33 @@
         
         <div class="history-panel">
             <div class="history-title">
-                <h3><i class="fas fa-history"></i> 历史记录</h3>
-                <button id="clear-history-btn" class="btn-secondary" style="padding: 8px 15px;">
-                    <i class="fas fa-trash-alt"></i> 清空历史
+                <h3>历史记录</h3>
+                <button id="clear-history-btn" style="background: rgba(255, 255, 255, 0.1); box-shadow: none; padding: 8px 15px;">
+                    清空历史
                 </button>
             </div>
             
             <div class="history-grid" id="history-container">
                 <div class="empty-history" id="empty-history">
-                    <i class="fas fa-history"></i>
-                    <p>您的创作历史将显示在这里</p>
+                    您的创作历史将显示在这里
                 </div>
             </div>
         </div>
-        
-        <div class="footer">
-            <p>
-                © 2025 <a href="https://musifei.live" target="_blank">Musifei</a> | 
-                <i class="fas fa-brain"></i> 基于 Pollinations.AI | 
-                <a href="#" id="about-link"><i class="fas fa-info-circle"></i> 关于</a>
-            </p>
-        </div>
     </div>
     
-    <!-- 添加图像查看器模态框 -->
-    <div id="image-viewer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; display: flex; align-items: center; justify-content: center;">
-        <div style="position: relative; max-width: 90%; max-height: 90%;">
-            <img id="viewer-image" style="max-width: 100%; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 30px rgba(0, 228, 255, 0.3);">
-            <button id="close-viewer" style="position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-    
-    <!-- 添加关于模态框 -->
-    <div id="about-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; display: flex; align-items: center; justify-content: center;">
-        <div style="background: var(--card-bg); border-radius: var(--card-border-radius); padding: 30px; max-width: 600px; position: relative; box-shadow: 0 0 30px rgba(0, 228, 255, 0.3); border: 1px solid rgba(255, 255, 255, 0.1);">
-            <button id="close-about" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer;">
-                <i class="fas fa-times"></i>
-            </button>
-            <h3 style="margin-bottom: 20px; color: var(--accent-color);">关于 Free AI绘画生成器</h3>
-            <p style="margin-bottom: 15px; line-height: 1.6;">这是一个基于Pollinations.AI的免费AI绘画生成工具，让您可以通过文字描述创建精美的AI艺术作品。</p>
-            <p style="margin-bottom: 15px; line-height: 1.6;">特点：</p>
-            <ul style="margin-bottom: 20px; padding-left: 20px; line-height: 1.6;">
-                <li>多种AI模型可选</li>
-                <li>自定义图像尺寸和参数</li>
-                <li>保存生成历史</li>
-                <li>无需注册，完全免费</li>
-            </ul>
-            <p style="margin-bottom: 15px; line-height: 1.6;">由 <a href="https://musifei.live" target="_blank" style="color: var(--accent-color);">Musifei</a> 开发，基于 <a href="https://pollinations.ai" target="_blank" style="color: var(--accent-color);">Pollinations.AI</a> 提供的API。</p>
-            <p style="font-size: 0.9rem; opacity: 0.7;">版本: 2.0.1 (2025)</p>
-        </div>
-    </div>
+
+
+<p style="text-align: center; padding: 2px 0;  color: inherit; font-family: 'Arial', sans-serif; font-size: 12px; line-height: 1.6; margin-top: 3px;">
+  <span style="display: inline-block; position: relative; vertical-align: middle;">
+    © 2025 <a href="https://musifei.live" target="_blank" style="text-decoration: none;  color: inherit; transition: color 0.3s ease;">Musifei</a>
+  </span>
+  |
+  <span style="display: inline-block; position: relative; vertical-align: middle;">
+    <i class="fas fa-brain" style="margin-right: 5px;"></i>
+    基于 Pollinations.AI
+  </span>
+</p>
+
 
     <div class="notification" id="notification"></div>
     
@@ -1229,37 +726,25 @@
             const imageActions = document.getElementById('image-actions');
             const downloadBtn = document.getElementById('download-btn');
             const copyPromptBtn = document.getElementById('copy-prompt-btn');
-            const regenerateBtn = document.getElementById('regenerate-btn');
             const historyContainer = document.getElementById('history-container');
             const emptyHistory = document.getElementById('empty-history');
             const clearHistoryBtn = document.getElementById('clear-history-btn');
             const notification = document.getElementById('notification');
-            const progressFill = document.getElementById('progress-fill');
-            const promptTags = document.querySelectorAll('.prompt-tag:not(.size-preset)');
-            const sizePresets = document.querySelectorAll('.size-preset');
-            const zoomBtn = document.getElementById('zoom-btn');
-            const quickDownloadBtn = document.getElementById('quick-download-btn');
-            const imageViewer = document.getElementById('image-viewer');
-            const viewerImage = document.getElementById('viewer-image');
-            const closeViewer = document.getElementById('close-viewer');
-            const aboutLink = document.getElementById('about-link');
-            const aboutModal = document.getElementById('about-modal');
-            const closeAbout = document.getElementById('close-about');
             
             // 模型信息
             const modelDescriptions = {
-                'flux': '<i class="fas fa-info-circle"></i> Flux: 通用型模型，适合大多数场景',
-                'FLUX-3D': '<i class="fas fa-info-circle"></i> FLUX-3D: 专为3D渲染风格优化的模型',
-                'FLUX-PRO': '<i class="fas fa-info-circle"></i> FLUX-PRO: 提供专业级质量的高级模型',
-                'Flux-realism': '<i class="fas fa-info-circle"></i> Flux-realism: 专注于写实风格的图像生成',
-                'Flux-anime': '<i class="fas fa-info-circle"></i> Flux-anime: 优化用于生成动漫风格的图像',
-                'Flux-cablyai': '<i class="fas fa-info-circle"></i> Flux-cablyai: 具有特殊艺术风格的模型',
-                'turbo': '<i class="fas fa-info-circle"></i> Turbo: 快速生成模型，速度优先'
+                'flux': 'Flux: 通用型模型，适合大多数场景',
+                'FLUX-3D': 'FLUX-3D: 专为3D渲染风格优化的模型',
+                'FLUX-PRO': 'FLUX-PRO: 提供专业级质量的高级模型',
+                'Flux-realism': 'Flux-realism: 专注于写实风格的图像生成',
+                'Flux-anime': 'Flux-anime: 优化用于生成动漫风格的图像',
+                'Flux-cablyai': 'Flux-cablyai: 具有特殊艺术风格的模型',
+                'turbo': 'Turbo: 快速生成模型，速度优先'
             };
             
             // 更新模型信息
             modelSelect.addEventListener('change', function() {
-                modelInfo.innerHTML = modelDescriptions[this.value] || '';
+                modelInfo.textContent = modelDescriptions[this.value] || '';
             });
             
             // 随机种子按钮
@@ -1270,7 +755,7 @@
             // 清空按钮
             clearBtn.addEventListener('click', function() {
                 promptInput.value = '';
-                negativePromptInput.value = 'worst quality, blurry, distorted, deformed';
+                negativePromptInput.value = 'worst quality, blurry';
                 seedInput.value = -1;
                 previewImage.style.display = 'none';
                 placeholderText.style.display = 'block';
@@ -1278,71 +763,11 @@
                 imageActions.style.display = 'none';
             });
             
-            // 提示词示例点击
-            promptTags.forEach(tag => {
-                tag.addEventListener('click', function() {
-                    promptInput.value = this.getAttribute('data-prompt');
-                    // 添加动画效果
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'translateY(-2px)';
-                    }, 150);
-                });
-            });
-            
-            // 尺寸预设点击
-            sizePresets.forEach(preset => {
-                preset.addEventListener('click', function() {
-                    widthInput.value = this.getAttribute('data-width');
-                    heightInput.value = this.getAttribute('data-height');
-                    // 添加动画效果
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'translateY(-2px)';
-                    }, 150);
-                });
-            });
-            
-            // 图像查看器
-            zoomBtn.addEventListener('click', function() {
-                if (previewImage.src) {
-                    viewerImage.src = previewImage.src;
-                    imageViewer.style.display = 'flex';
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-            
-            closeViewer.addEventListener('click', function() {
-                imageViewer.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-            
-            // 快速下载
-            quickDownloadBtn.addEventListener('click', function() {
-                if (previewImage.src) {
-                    window.open(previewImage.src, '_blank');
-                    showNotification('<i class="fas fa-check-circle"></i> 图像已在新窗口打开', 'success');
-                }
-            });
-            
-            // 关于模态框
-            aboutLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                aboutModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-            
-            closeAbout.addEventListener('click', function() {
-                aboutModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-            
             // 生成图像
             generateBtn.addEventListener('click', async function() {
                 const prompt = promptInput.value.trim();
                 if (!prompt) {
-                    showNotification('<i class="fas fa-exclamation-circle"></i> 请输入提示词', 'error');
-                    promptInput.focus();
+                    showNotification('请输入提示词', 'error');
                     return;
                 }
                 
@@ -1352,14 +777,6 @@
                 previewImage.style.display = 'none';
                 imageInfo.style.display = 'none';
                 imageActions.style.display = 'none';
-                
-                // 模拟进度条
-                let progress = 0;
-                const progressInterval = setInterval(() => {
-                    progress += Math.random() * 5;
-                    if (progress > 90) progress = 90;
-                    progressFill.style.width = progress + '%';
-                }, 300);
                 
                 // 构建参数
                 const params = {
@@ -1392,76 +809,61 @@
                     
                     // 加载图像
                     previewImage.onload = function() {
-                        clearInterval(progressInterval);
-                        progressFill.style.width = '100%';
+                        loadingIndicator.style.display = 'none';
+                        previewImage.style.display = 'block';
+                        imageInfo.style.display = 'block';
+                        imageActions.style.display = 'flex';
                         
-                        setTimeout(() => {
-                            loadingIndicator.style.display = 'none';
-                            previewImage.style.display = 'block';
-                            imageInfo.style.display = 'block';
-                            imageActions.style.display = 'flex';
-                            
-                            // 显示图像信息
-                            const details = {
-                                prompt: params.prompt,
-                                model: params.model,
-                                dimensions: `${params.width}x${params.height}`,
-                                seed: params.seed,
-                                negative_prompt: params.negative_prompt || '无',
-                                generated_at: new Date().toLocaleString()
-                            };
-                            
-                            imageDetails.textContent = JSON.stringify(details, null, 2);
-                            
-                            // 添加到历史记录
-                            addToHistory(url, details);
-                            
-                            showNotification('<i class="fas fa-check-circle"></i> 图像生成成功！', 'success');
-                        }, 500);
+                        // 显示图像信息
+                        const details = {
+                            prompt: params.prompt,
+                            model: params.model,
+                            dimensions: `${params.width}x${params.height}`,
+                            seed: params.seed,
+                            negative_prompt: params.negative_prompt || '无',
+                            generated_at: new Date().toLocaleString()
+                        };
+                        
+                        imageDetails.textContent = JSON.stringify(details, null, 2);
+                        
+                        // 添加到历史记录
+                        addToHistory(url, details);
                     };
                     
                     previewImage.onerror = function() {
-                        clearInterval(progressInterval);
                         loadingIndicator.style.display = 'none';
                         placeholderText.style.display = 'block';
-                        showNotification('<i class="fas fa-exclamation-triangle"></i> 图像生成失败，请重试', 'error');
+                        showNotification('图像生成失败，请重试', 'error');
                     };
                     
                     previewImage.src = url;
                     
                 } catch (error) {
-                    clearInterval(progressInterval);
                     loadingIndicator.style.display = 'none';
                     placeholderText.style.display = 'block';
-                    showNotification('<i class="fas fa-exclamation-triangle"></i> 发生错误: ' + error.message, 'error');
+                    showNotification('发生错误: ' + error.message, 'error');
                 }
-            });
-            
-            // 重新生成按钮
-            regenerateBtn.addEventListener('click', function() {
-                // 更改种子值并重新生成
-                seedInput.value = Math.floor(Math.random() * 2147483647);
-                generateBtn.click();
             });
             
             // 下载图像
             downloadBtn.addEventListener('click', function() {
-                if (previewImage.src) {
-                    window.open(previewImage.src, '_blank');
-                    showNotification('<i class="fas fa-check-circle"></i> 图像已在新窗口打开', 'success');
-                }
-            });
+    if (previewImage.src) {
+        // 直接在新标签页打开图片
+        window.open(previewImage.src, '_blank');
+        showNotification('图像已在新窗口打开', 'success');
+    }
+});
             
             // 复制提示词
             copyPromptBtn.addEventListener('click', function() {
                 navigator.clipboard.writeText(promptInput.value)
-                    .then(() => showNotification('<i class="fas fa-clipboard-check"></i> 提示词已复制到剪贴板', 'success'))
-                    .catch(err => showNotification('<i class="fas fa-exclamation-circle"></i> 复制失败: ' + err, 'error'));
+                    .then(() => showNotification('提示词已复制到剪贴板', 'success'))
+                    .catch(err => showNotification('复制失败: ' + err, 'error'));
             });
             
             // 显示通知
             function showNotification(message, type) {
-                notification.innerHTML = message;
+                notification.textContent = message;
                 notification.className = 'notification ' + type;
                 notification.classList.add('show');
                 
@@ -1471,72 +873,67 @@
             }
             
             // 添加到历史记录
-            function addToHistory(imageUrl, details) {
-                // 检查是否已存在相同URL的历史记录
-                const existingItems = historyContainer.querySelectorAll('.history-item');
-                for (let i = 0; i < existingItems.length; i++) {
-                    const img = existingItems[i].querySelector('img');
-                    if (img.src === imageUrl) {
-                        // 将此项移到顶部而不是创建重复项
-                        historyContainer.insertBefore(existingItems[i], historyContainer.firstChild);
-                        saveHistory();
-                        return;
-                    }
-                }
-                
-                // 隐藏空历史提示
-                emptyHistory.style.display = 'none';
-                
-                // 创建历史项
-                const historyItem = document.createElement('div');
-                historyItem.className = 'history-item';
-                
-                historyItem.innerHTML = `
-                    <img src="${imageUrl}" alt="AI生成图像">
-                    <div class="history-item-info">
-                        <div class="history-item-prompt">${details.prompt}</div>
-                        <div class="history-item-model"><i class="fas fa-robot"></i> ${details.model}</div>
-                    </div>
-                `;
-                
-                // 历史项点击处理
-                historyItem.addEventListener('click', function() {
-                    previewImage.src = imageUrl;
-                    previewImage.style.display = 'block';
-                    placeholderText.style.display = 'none';
-                    imageInfo.style.display = 'block';
-                    imageActions.style.display = 'flex';
-                    imageDetails.textContent = JSON.stringify(details, null, 2);
-                    
-                    // 填充表单
-                    promptInput.value = details.prompt;
-                    modelSelect.value = details.model;
-                    modelInfo.innerHTML = modelDescriptions[details.model] || '';
-                    
-                    const dimensions = details.dimensions.split('x');
-                    widthInput.value = dimensions[0];
-                    heightInput.value = dimensions[1];
-                    seedInput.value = details.seed;
-                    
-                    if (details.negative_prompt && details.negative_prompt !== '无') {
-                        negativePromptInput.value = details.negative_prompt;
-                    }
-                    
-                    // 添加选中效果
-                    const allHistoryItems = document.querySelectorAll('.history-item');
-                    allHistoryItems.forEach(item => item.classList.remove('active'));
-                    historyItem.classList.add('active');
-                    
-                    // 滚动到顶部
-                    window.scrollTo({top: 0, behavior: 'smooth'});
-                });
-                
-                // 添加到容器顶部
-                historyContainer.insertBefore(historyItem, historyContainer.firstChild);
-                
-                // 保存到本地存储
-                saveHistory();
-            }
+            // Replace the addToHistory function with this updated version
+function addToHistory(imageUrl, details) {
+    // Check if this image URL already exists in history to prevent duplicates
+    const existingItems = historyContainer.querySelectorAll('.history-item');
+    for (let i = 0; i < existingItems.length; i++) {
+        const img = existingItems[i].querySelector('img');
+        if (img.src === imageUrl) {
+            // Move this item to the top instead of creating a duplicate
+            historyContainer.insertBefore(existingItems[i], historyContainer.firstChild);
+            saveHistory();
+            return; // Exit the function early - no need to create a new item
+        }
+    }
+    
+    // If we reach here, this is a new item to add
+    
+    // Hide empty history prompt
+    emptyHistory.style.display = 'none';
+    
+    // Create history item
+    const historyItem = document.createElement('div');
+    historyItem.className = 'history-item';
+    
+    historyItem.innerHTML = `
+        <img src="${imageUrl}" alt="AI生成图像">
+        <div class="history-item-info">
+            <div class="history-item-prompt">${details.prompt}</div>
+            <div class="history-item-model">${details.model}</div>
+        </div>
+    `;
+    
+    // Click handler for history item
+    historyItem.addEventListener('click', function() {
+        previewImage.src = imageUrl;
+        previewImage.style.display = 'block';
+        placeholderText.style.display = 'none';
+        imageInfo.style.display = 'block';
+        imageActions.style.display = 'flex';
+        imageDetails.textContent = JSON.stringify(details, null, 2);
+        
+        // Fill form
+        promptInput.value = details.prompt;
+        modelSelect.value = details.model;
+        modelInfo.textContent = modelDescriptions[details.model] || '';
+        
+        const dimensions = details.dimensions.split('x');
+        widthInput.value = dimensions[0];
+        heightInput.value = dimensions[1];
+        seedInput.value = details.seed;
+        
+        if (details.negative_prompt && details.negative_prompt !== '无') {
+            negativePromptInput.value = details.negative_prompt;
+        }
+    });
+    
+    // Add to container at the top
+    historyContainer.insertBefore(historyItem, historyContainer.firstChild);
+    
+    // Save to local storage
+    saveHistory();
+}
             
             // 保存历史记录到本地存储
             function saveHistory() {
@@ -1550,13 +947,13 @@
                     const item = historyItems[i];
                     const img = item.querySelector('img');
                     const prompt = item.querySelector('.history-item-prompt').textContent;
-                    const modelText = item.querySelector('.history-item-model').textContent.trim();
+                    const model = item.querySelector('.history-item-model').textContent;
                     
                     history.push({
                         imageUrl: img.src,
                         details: {
                             prompt: prompt,
-                            model: modelText,
+                            model: model,
                             dimensions: `${widthInput.value}x${heightInput.value}`,
                             seed: seedInput.value,
                             negative_prompt: negativePromptInput.value,
@@ -1583,7 +980,7 @@
                             <img src="${item.imageUrl}" alt="AI生成图像">
                             <div class="history-item-info">
                                 <div class="history-item-prompt">${item.details.prompt}</div>
-                                <div class="history-item-model"><i class="fas fa-robot"></i> ${item.details.model}</div>
+                                <div class="history-item-model">${item.details.model}</div>
                             </div>
                         `;
                         
@@ -1598,8 +995,8 @@
                             
                             // 填充表单
                             promptInput.value = item.details.prompt;
-                            modelSelect.value = item.details.model.replace(/[^a-zA-Z0-9-]/g, '').trim();
-                            modelInfo.innerHTML = modelDescriptions[modelSelect.value] || '';
+                            modelSelect.value = item.details.model;
+                            modelInfo.textContent = modelDescriptions[item.details.model] || '';
                             
                             if (item.details.dimensions) {
                                 const dimensions = item.details.dimensions.split('x');
@@ -1614,14 +1011,6 @@
                             if (item.details.negative_prompt && item.details.negative_prompt !== '无') {
                                 negativePromptInput.value = item.details.negative_prompt;
                             }
-                            
-                            // 添加选中效果
-                            const allHistoryItems = document.querySelectorAll('.history-item');
-                            allHistoryItems.forEach(item => item.classList.remove('active'));
-                            historyItem.classList.add('active');
-                            
-                            // 滚动到顶部
-                            window.scrollTo({top: 0, behavior: 'smooth'});
                         });
                         
                         historyContainer.appendChild(historyItem);
@@ -1631,114 +1020,24 @@
             
             // 清空历史记录
             clearHistoryBtn.addEventListener('click', function() {
-                // 添加确认对话框
-                const confirmDialog = document.createElement('div');
-                confirmDialog.className = 'confirm-dialog';
-                confirmDialog.innerHTML = `
-                    <div class="confirm-dialog-content">
-                        <h4><i class="fas fa-exclamation-triangle"></i> 确认删除</h4>
-                        <p>确定要清空所有历史记录吗？此操作不可撤销。</p>
-                        <div class="confirm-actions">
-                            <button id="confirm-yes" class="btn-danger"><i class="fas fa-trash-alt"></i> 确认删除</button>
-                            <button id="confirm-no" class="btn-secondary"><i class="fas fa-times"></i> 取消</button>
-                        </div>
-                    </div>
-                `;
-                
-                document.body.appendChild(confirmDialog);
-                
-                // 添加确认对话框样式
-                const style = document.createElement('style');
-                style.textContent = `
-                    .confirm-dialog {
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0, 0, 0, 0.8);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        z-index: 1001;
-                    }
-                    .confirm-dialog-content {
-                        background: var(--card-bg);
-                        border-radius: var(--card-border-radius);
-                        padding: 25px;
-                        width: 90%;
-                        max-width: 400px;
-                        box-shadow: 0 0 30px rgba(0, 228, 255, 0.3);
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                    }
-                    .confirm-dialog h4 {
-                        margin-bottom: 15px;
-                        color: var(--error-color);
-                        display: flex;
-                        align-items: center;
-                    }
-                    .confirm-dialog h4 i {
-                        margin-right: 10px;
-                    }
-                    .confirm-dialog p {
-                        margin-bottom: 20px;
-                        line-height: 1.5;
-                    }
-                    .confirm-actions {
-                        display: flex;
-                        gap: 15px;
-                    }
-                    .confirm-actions button {
-                        flex: 1;
-                    }
-                    .btn-danger {
-                        background: linear-gradient(45deg, #ff3838, #ff5e57);
-                        box-shadow: 0 4px 15px rgba(255, 56, 56, 0.4);
-                    }
-                    .btn-danger:hover {
-                        box-shadow: 0 6px 20px rgba(255, 56, 56, 0.6);
-                    }
-                `;
-                document.head.appendChild(style);
-                
-                // 确认按钮事件
-                document.getElementById('confirm-yes').addEventListener('click', function() {
+                if (confirm('确定要清空所有历史记录吗？此操作不可撤销。')) {
                     historyContainer.innerHTML = '';
                     historyContainer.appendChild(emptyHistory);
                     emptyHistory.style.display = 'block';
                     localStorage.removeItem('aiDrawingHistory');
-                    showNotification('<i class="fas fa-check-circle"></i> 历史记录已清空', 'success');
-                    document.body.removeChild(confirmDialog);
-                });
-                
-                // 取消按钮事件
-                document.getElementById('confirm-no').addEventListener('click', function() {
-                    document.body.removeChild(confirmDialog);
-                });
+                    showNotification('历史记录已清空', 'success');
+                }
             });
             
             // 初始化
             loadHistory();
-            modelInfo.innerHTML = modelDescriptions[modelSelect.value];
+            modelInfo.textContent = modelDescriptions[modelSelect.value];
             
             // 添加键盘快捷键
             document.addEventListener('keydown', function(e) {
                 // Ctrl+Enter 生成图像
                 if (e.ctrlKey && e.key === 'Enter') {
                     generateBtn.click();
-                }
-                
-                // Esc 关闭模态框
-                if (e.key === 'Escape') {
-                    imageViewer.style.display = 'none';
-                    aboutModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                    
-                    // 关闭确认对话框
-                    const confirmDialog = document.querySelector('.confirm-dialog');
-                    if (confirmDialog) {
-                        document.body.removeChild(confirmDialog);
-                    }
                 }
             });
             
@@ -1749,75 +1048,7 @@
                     const x = Math.random() * 80;
                     const y = Math.random() * 80;
                     effect.style.transform = `translate(${x}%, ${y}%)`;
-                }, 8000);
-            });
-            
-            // 点击图片外部关闭图像查看器
-            imageViewer.addEventListener('click', function(e) {
-                if (e.target === imageViewer) {
-                    imageViewer.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-            
-            // 点击模态框外部关闭关于模态框
-            aboutModal.addEventListener('click', function(e) {
-                if (e.target === aboutModal) {
-                    aboutModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-            
-            // 添加页面加载动画
-            window.addEventListener('load', function() {
-                const pageLoader = document.createElement('div');
-                pageLoader.className = 'page-loader';
-                pageLoader.innerHTML = `
-                    <div class="loader-content">
-                        <div class="spinner"></div>
-                        <div class="loading-text">加载中...</div>
-                    </div>
-                `;
-                document.body.appendChild(pageLoader);
-                
-                // 添加加载动画样式
-                const style = document.createElement('style');
-                style.textContent = `
-                    .page-loader {
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: var(--bg-color);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        z-index: 2000;
-                        transition: opacity 0.5s ease, visibility 0.5s ease;
-                    }
-                    .loader-content {
-                        text-align: center;
-                    }
-                    .page-loader .loading-text {
-                        margin-top: 20px;
-                        font-size: 1.2rem;
-                        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-                        -webkit-background-clip: text;
-                        background-clip: text;
-                        color: transparent;
-                    }
-                `;
-                document.head.appendChild(style);
-                
-                // 延迟移除加载动画
-                setTimeout(() => {
-                    pageLoader.style.opacity = '0';
-                    pageLoader.style.visibility = 'hidden';
-                    setTimeout(() => {
-                        document.body.removeChild(pageLoader);
-                    }, 500);
-                }, 800);
+                }, 5000);
             });
             
             // 获取可用模型列表（可选功能）
@@ -1837,7 +1068,7 @@
                             });
                             
                             // 更新模型信息
-                            modelInfo.innerHTML = modelDescriptions[modelSelect.value] || `<i class="fas fa-info-circle"></i> ${modelSelect.value}: 可用模型`;
+                            modelInfo.textContent = modelDescriptions[modelSelect.value] || `${modelSelect.value}: 可用模型`;
                         }
                     }
                 } catch (error) {
