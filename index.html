@@ -3,651 +3,659 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FreeAI - 基于Pollinations.AI的免费AI图像生成和语音合成服务">
-    <meta name="theme-color" content="#f8fafc">
-    <title>FreeAI - 简约而强大的AI工具</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234f46e5' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z'/%3E%3C/svg%3E">
+    <meta name="description" content="FreeAI - 免费AI图像生成和语音合成工具">
+    <title>FreeAI - 免费AI工具</title>
     <style>
-        /* 基础变量 */
+        /* 基础设置 */
         :root {
-            /* 颜色 */
             --color-primary: #4f46e5;
-            --color-primary-light: #6366f1;
+            --color-primary-light: rgba(79, 70, 229, 0.1);
+            --color-primary-dark: #3730a3;
             --color-secondary: #f43f5e;
-            --color-accent: #0ea5e9;
-            
-            /* 中性色 */
+            --color-secondary-light: rgba(244, 63, 94, 0.1);
+            --color-secondary-dark: #be123c;
             --color-bg: #f8fafc;
             --color-surface: #ffffff;
-            --color-surface-variant: #f1f5f9;
             --color-text: #0f172a;
-            --color-text-secondary: #475569;
+            --color-text-light: #64748b;
             --color-border: #e2e8f0;
+            --color-border-light: rgba(226, 232, 240, 0.5);
             
-            /* 间距 */
-            --space-1: 0.25rem;
             --space-2: 0.5rem;
-            --space-3: 0.75rem;
             --space-4: 1rem;
             --space-6: 1.5rem;
             --space-8: 2rem;
             --space-12: 3rem;
-            --space-16: 4rem;
             
-            /* 字体 */
-            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-            
-            /* 尺寸 */
-            --max-width: 72rem;
-            --header-height: 4rem;
-            --radius-sm: 0.25rem;
-            --radius-md: 0.5rem;
-            --radius-lg: 0.75rem;
-            --radius-xl: 1rem;
-            
-            /* 阴影 */
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            
-            /* 动画 */
-            --transition-fast: 150ms ease;
-            --transition-normal: 250ms ease;
-            --transition-slow: 350ms ease;
+            --radius: 1rem;
+            --radius-sm: 0.5rem;
+            --radius-lg: 1.5rem;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         /* 重置 */
-        *, *::before, *::after {
-            box-sizing: border-box;
+        * {
             margin: 0;
             padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-text-size-adjust: 100%;
-            height: 100%;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: var(--font-sans);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: var(--color-bg);
             color: var(--color-text);
             line-height: 1.5;
-            min-height: 100%;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-        }
-
-        img, svg {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-
-        input, button, textarea, select {
-            font: inherit;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
         }
 
         /* 布局 */
         .container {
-            width: 100%;
-            max-width: var(--max-width);
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 var(--space-4);
         }
 
-        .section {
-            margin: var(--space-16) 0;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: var(--space-8);
-            color: var(--color-text);
-        }
-
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-8);
-            max-width: 36rem;
-        }
-
-        /* 头部导航 */
-        .header {
+        header {
             position: sticky;
             top: 0;
-            z-index: 100;
-            height: var(--header-height);
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
+            z-index: 10;
+            background-color: rgba(248, 250, 252, 0.8);
+            backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--color-border);
+            transition: all var(--transition);
         }
 
-        .navbar {
+        .header-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 100%;
+            padding: var(--space-4) 0;
         }
 
         .logo {
             display: flex;
             align-items: center;
+            gap: var(--space-2);
             font-weight: 700;
             font-size: 1.25rem;
             color: var(--color-primary);
-            gap: var(--space-2);
+            text-decoration: none;
+            transition: transform var(--transition);
         }
 
-        .logo-icon {
-            display: flex;
+        .logo:hover {
+            transform: scale(1.05);
         }
 
-        .nav-links {
-            display: flex;
-            gap: var(--space-6);
+        .logo svg {
+            transition: transform 0.5s ease;
         }
 
-        .nav-link {
-            position: relative;
-            color: var(--color-text-secondary);
-            font-weight: 500;
-            transition: color var(--transition-fast);
+        .logo:hover svg {
+            transform: rotate(90deg);
         }
 
-        .nav-link:hover {
-            color: var(--color-primary);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--color-primary);
-            transition: width var(--transition-normal);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* 英雄区域 */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* 介绍部分 */
+        .intro {
             text-align: center;
-            padding: var(--space-16) 0;
-            position: relative;
+            padding: var(--space-12) 0 var(--space-8);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
+        .intro h1 {
+            font-size: 2.5rem;
             margin-bottom: var(--space-4);
             background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
             -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             background-clip: text;
             color: transparent;
         }
 
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 36rem;
+        .intro p {
+            color: var(--color-text-light);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 工具卡片 */
+        .tools-section {
+            padding: var(--space-8) 0;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
             margin-bottom: var(--space-8);
+            position: relative;
+            display: inline-block;
         }
 
-        .hero-actions {
-            display: flex;
-            gap: var(--space-4);
-            margin-top: var(--space-4);
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
         }
 
-        /* 卡片 */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: var(--space-8);
+            margin: var(--space-8) 0;
+            perspective: 1000px;
+        }
+
+        /* 高级卡片设计 */
         .card {
-            background-color: var(--color-surface);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.9), 
+                rgba(255, 255, 255, 0.6)
+            );
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
+            box-shadow: 
+                0 10px 30px -15px rgba(79, 70, 229, 0.15),
+                0 5px 10px rgba(0, 0, 0, 0.05),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             overflow: hidden;
-            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+            transition: transform var(--transition-bounce), box-shadow var(--transition);
             height: 100%;
             display: flex;
             flex-direction: column;
-            border: 1px solid var(--color-border);
+            position: relative;
+            border: 1px solid var(--color-border-light);
+            transform-style: preserve-3d;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+            box-shadow: 
+                0 20px 40px -20px rgba(79, 70, 229, 0.25),
+                0 10px 20px -5px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(
+                circle at top left,
+                rgba(79, 70, 229, 0.08),
+                transparent 60%
+            );
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .card:nth-child(2)::before {
+            background: radial-gradient(
+                circle at top left,
+                rgba(244, 63, 94, 0.08),
+                transparent 60%
+            );
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, 
+                var(--color-primary), 
+                var(--color-primary-dark)
+            );
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card:nth-child(2)::after {
+            background: linear-gradient(90deg, 
+                var(--color-secondary), 
+                var(--color-secondary-dark)
+            );
+        }
+
+        .card:hover::after {
+            transform: scaleX(1);
         }
 
         .card-header {
             padding: var(--space-6);
-            border-bottom: 1px solid var(--color-border);
             display: flex;
             align-items: center;
             gap: var(--space-4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-icon-wrapper {
+            position: relative;
+            width: 64px;
+            height: 64px;
+        }
+
+        .card-icon-bg {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, 
+                var(--color-primary-light), 
+                rgba(79, 70, 229, 0.2)
+            );
+            opacity: 0.8;
+            transform: rotate(-5deg);
+            transition: transform var(--transition);
+        }
+
+        .card:nth-child(2) .card-icon-bg {
+            background: linear-gradient(135deg, 
+                var(--color-secondary-light), 
+                rgba(244, 63, 94, 0.2)
+            );
+        }
+
+        .card:hover .card-icon-bg {
+            transform: rotate(0deg) scale(1.1);
         }
 
         .card-icon {
+            position: absolute;
+            inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-md);
-            background-color: var(--color-primary-light);
-            color: white;
-            font-size: 1.5rem;
+            color: var(--color-primary);
+            transition: transform var(--transition);
+        }
+
+        .card:nth-child(2) .card-icon {
+            color: var(--color-secondary);
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1);
+        }
+
+        .card-title-wrapper {
+            flex: 1;
         }
 
         .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--color-text), var(--color-text-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            transition: all var(--transition);
+        }
+
+        .card:hover .card-title {
+            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .card:nth-child(2):hover .card-title {
+            background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: var(--color-text-light);
+            margin-top: 4px;
         }
 
         .card-body {
-            padding: var(--space-6);
+            padding: 0 var(--space-6) var(--space-6);
             flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-description {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-6);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .card-features {
+            list-style-type: none;
+            margin-left: var(--space-2);
+            color: var(--color-text-light);
+        }
+
+        .card-features li {
+            position: relative;
+            padding-left: var(--space-8);
+            margin-bottom: var(--space-4);
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-features li:hover {
+            transform: translateX(4px);
+            color: var(--color-text);
+        }
+
+        .feature-icon {
+            position: absolute;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                var(--color-primary-light), 
+                rgba(79, 70, 229, 0.2)
+            );
+            color: var(--color-primary);
+            transition: all var(--transition);
+        }
+
+        .card:nth-child(2) .feature-icon {
+            background: linear-gradient(135deg, 
+                var(--color-secondary-light), 
+                rgba(244, 63, 94, 0.2)
+            );
+            color: var(--color-secondary);
+        }
+
+        .card-features li:hover .feature-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, 
+                var(--color-primary-light), 
+                rgba(79, 70, 229, 0.3)
+            );
+        }
+
+        .card:nth-child(2) .card-features li:hover .feature-icon {
+            background: linear-gradient(135deg, 
+                var(--color-secondary-light), 
+                rgba(244, 63, 94, 0.3)
+            );
         }
 
         .card-footer {
             padding: var(--space-6);
-            border-top: 1px solid var(--color-border);
             display: flex;
             justify-content: flex-end;
+            position: relative;
+            z-index: 1;
         }
 
-        /* 特性区域 */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-6);
+        .card-footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: var(--space-6);
+            right: var(--space-6);
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--color-border), 
+                transparent
+            );
         }
 
-        .feature {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-4);
-            padding: var(--space-6);
-            background-color: var(--color-surface);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            transition: transform var(--transition-normal);
-            border: 1px solid var(--color-border);
-        }
-
-        .feature:hover {
-            transform: translateY(-4px);
-        }
-
-        .feature-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-md);
-            background-color: var(--color-primary-light);
-            color: white;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .feature-content {
-            flex-grow: 1;
-        }
-
-        .feature-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: var(--space-2);
-        }
-
-        .feature-description {
-            color: var(--color-text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* 按钮 */
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: var(--space-2);
             padding: 0 var(--space-6);
-            height: 2.5rem;
-            border-radius: var(--radius-md);
-            font-weight: 500;
-            transition: all var(--transition-fast);
+            height: 3rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: all var(--transition);
             cursor: pointer;
-            white-space: nowrap;
+            text-decoration: none;
             border: none;
             outline: none;
-            gap: var(--space-2);
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
         }
 
         .button-primary {
-            background-color: var(--color-primary);
+            background: linear-gradient(135deg, 
+                var(--color-primary), 
+                var(--color-primary-dark)
+            );
             color: white;
-            box-shadow: 0 1px 3px 0 rgba(79, 70, 229, 0.3);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .card:nth-child(2) .button-primary {
+            background: linear-gradient(135deg, 
+                var(--color-secondary), 
+                var(--color-secondary-dark)
+            );
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
         }
 
         .button-primary:hover {
-            background-color: var(--color-primary-light);
-            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
         }
 
-        .button-secondary {
-            background-color: var(--color-surface);
-            color: var(--color-text);
-            border: 1px solid var(--color-border);
+        .card:nth-child(2) .button-primary:hover {
+            box-shadow: 0 6px 16px rgba(244, 63, 94, 0.4);
         }
 
-        .button-secondary:hover {
-            background-color: var(--color-surface-variant);
-            border-color: var(--color-text-secondary);
+        .button-primary::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0), 
+                rgba(255, 255, 255, 0.2), 
+                rgba(255, 255, 255, 0)
+            );
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
         }
 
-        .button-accent {
-            background-color: var(--color-accent);
-            color: white;
+        .button-primary:hover::before {
+            transform: translateX(100%);
         }
 
-        .button-accent:hover {
-            filter: brightness(1.1);
+        .button-icon {
+            transition: transform var(--transition);
         }
 
-        /* 工具网格 */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-6);
+        .button-primary:hover .button-icon {
+            transform: translateX(4px);
         }
 
         /* 页脚 */
-        .footer {
-            background-color: var(--color-surface-variant);
-            padding: var(--space-12) 0;
-            margin-top: var(--space-16);
+        footer {
+            margin-top: var(--space-8);
+            padding: var(--space-8) 0 var(--space-4);
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.875rem;
             border-top: 1px solid var(--color-border);
         }
 
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: var(--space-6);
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            font-weight: 600;
+        footer a {
             color: var(--color-primary);
+            text-decoration: none;
+            transition: color var(--transition);
         }
 
-        .footer-links {
-            display: flex;
-            gap: var(--space-6);
-        }
-
-        .footer-link {
-            color: var(--color-text-secondary);
-            transition: color var(--transition-fast);
-        }
-
-        .footer-link:hover {
-            color: var(--color-primary);
-        }
-
-        .footer-copyright {
-            width: 100%;
-            text-align: center;
-            margin-top: var(--space-8);
-            color: var(--color-text-secondary);
-            font-size: 0.875rem;
-        }
-
-        /* 工具提示 */
-        .tooltip {
-            position: relative;
-        }
-
-        .tooltip:hover::before {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: var(--space-2) var(--space-3);
-            background-color: var(--color-text);
-            color: white;
-            border-radius: var(--radius-sm);
-            font-size: 0.75rem;
-            white-space: nowrap;
-            pointer-events: none;
-            margin-bottom: var(--space-2);
-            z-index: 10;
+        footer a:hover {
+            color: var(--color-secondary);
+            text-decoration: underline;
         }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
-            .hero-actions {
-                flex-direction: column;
-                width: 100%;
-                max-width: 300px;
+            .tools-grid {
+                grid-template-columns: 1fr;
             }
             
-            .nav-links {
-                display: none;
+            .intro h1 {
+                font-size: 2rem;
             }
             
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
+            .intro p {
+                font-size: 1rem;
             }
             
-            .footer-logo {
-                margin: 0 auto;
-            }
-            
-            .footer-links {
-                margin: 0 auto;
+            .card {
+                transform: none !important;
             }
         }
 
         /* 动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease forwards;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* 实用工具类 */
-        .text-center { text-align: center; }
-        .mt-4 { margin-top: var(--space-4); }
-        .mt-8 { margin-top: var(--space-8); }
-        .mb-4 { margin-bottom: var(--space-4); }
-        .mb-8 { margin-bottom: var(--space-8); }
-        .flex { display: flex; }
-        .items-center { align-items: center; }
-        .justify-center { justify-content: center; }
-        .gap-2 { gap: var(--space-2); }
-        .gap-4 { gap: var(--space-4); }
+        /* 暗色模式切换按钮 */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-border-light);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover::before {
+            transform: scale(1);
+        }
+
+        .theme-toggle svg {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 高级卡片浮动效果 */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-animation-delayed {
+            animation: float 6s ease-in-out 2s infinite;
+        }
+
+        /* 鼠标跟随效果 */
+        .card-3d-container {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
     </style>
 </head>
 <body>
-    <header class="header">
+    <header>
         <div class="container">
-            <nav class="navbar">
+            <div class="header-container">
                 <a href="#" class="logo">
-                    <span class="logo-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
-                            <path d="M12 8v8"></path>
-                            <path d="M8 12h8"></path>
-                        </svg>
-                    </span>
-                    <span>FreeAI</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
+                        <path d="M12 8v8"></path>
+                        <path d="M8 12h8"></path>
+                    </svg>
+                    FreeAI
                 </a>
-                <div class="nav-links">
-                    <a href="#features" class="nav-link">特性</a>
-                    <a href="#tools" class="nav-link">工具</a>
-                    <a href="#about" class="nav-link">关于</a>
-                    <a href="https://musifei.live" target="_blank" rel="noopener noreferrer" class="nav-link">博客</a>
-                </div>
-            </nav>
+                <button class="theme-toggle" aria-label="切换暗色模式">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1 class="hero-title animate-fade-in">简约而强大的AI工具</h1>
-                <p class="hero-subtitle animate-fade-in" style="animation-delay: 0.1s;">
-                    基于 Pollinations.AI 的免费AI图像生成和语音合成服务，无需注册，即刻创作
-                </p>
-                <div class="hero-actions animate-fade-in" style="animation-delay: 0.2s;">
-                    <a href="#tools" class="button button-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-                        开始使用
-                    </a>
-                    <a href="#features" class="button button-secondary">了解更多</a>
-                </div>
-            </div>
+    <div class="container">
+        <section class="intro fade-in">
+            <h1>免费AI创作工具</h1>
+            <p>使用我们的高质量AI工具释放你的创造力，无需注册，完全免费</p>
         </section>
 
-        <section class="section" id="features">
-            <div class="container">
-                <h2 class="section-title text-center">为什么选择 FreeAI</h2>
-                <p class="section-subtitle text-center mx-auto">
-                    我们提供简单易用的AI工具，帮助你释放创造力，实现想法
-                </p>
-                
-                <div class="features">
-                    <div class="feature animate-fade-in" style="animation-delay: 0.1s;">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2v20"></path>
-                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3 class="feature-title">完全免费</h3>
-                            <p class="feature-description">所有工具均可免费使用，无需注册账号或支付费用</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature animate-fade-in" style="animation-delay: 0.2s;">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                                <path d="M7 7h.01"></path>
-                                <path d="M12 7h.01"></path>
-                                <path d="M17 7h.01"></path>
-                                <path d="M7 12h.01"></path>
-                                <path d="M12 12h.01"></path>
-                                <path d="M17 12h.01"></path>
-                                <path d="M7 17h.01"></path>
-                                <path d="M12 17h.01"></path>
-                                <path d="M17 17h.01"></path>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3 class="feature-title">简单易用</h3>
-                            <p class="feature-description">直观的界面设计，无需专业知识，轻松上手</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature animate-fade-in" style="animation-delay: 0.3s;">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3 class="feature-title">高质量输出</h3>
-                            <p class="feature-description">基于先进AI模型，生成高质量图像和自然流畅的语音</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature animate-fade-in" style="animation-delay: 0.4s;">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3 class="feature-title">注重隐私</h3>
-                            <p class="feature-description">我们不会存储您的数据或创作内容，保障您的隐私安全</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature animate-fade-in" style="animation-delay: 0.5s;">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
-                                <path d="M21 3v5h-5"></path>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3 class="feature-title">快速生成</h3>
-                            <p class="feature-description">高效的处理速度，让您的创意快速成型</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature animate-fade-in" style="animation-delay: 0.6s;">
-                        <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                            </svg>
-                        </div>
-                        <div class="feature-content">
-                            <h3 class="feature-title">多样风格</h3>
-                            <p class="feature-description">支持多种艺术风格和语音类型，满足不同创作需求</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="tools">
-            <div class="container">
-                <h2 class="section-title text-center">我们的工具</h2>
-                <p class="section-subtitle text-center mx-auto">
-                    强大的AI工具，助力你的创意项目
-                </p>
-                
-                <div class="tools-grid">
-                    <div class="card animate-fade-in" style="animation-delay: 0.1s;">
-                        <div class="card-header">
+        <section class="tools-section">
+            <h2 class="section-title fade-in">探索工具</h2>
+            
+            <div class="tools-grid">
+                <div class="card card-3d-container fade-in float-animation">
+                    <div class="card-header">
+                        <div class="card-icon-wrapper">
+                            <div class="card-icon-bg"></div>
                             <div class="card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="m2 22 1-1h3l9-9"></path>
                                     <path d="M3 21v-3l9-9"></path>
                                     <path d="m15 6 3.2-3.2a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4L19 10"></path>
@@ -655,159 +663,214 @@
                                     <path d="M19 10 9 20"></path>
                                 </svg>
                             </div>
+                        </div>
+                        <div class="card-title-wrapper">
                             <h3 class="card-title">AI图像生成</h3>
-                        </div>
-                        <div class="card-body">
-                            <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">
-                                将你的想法转化为视觉艺术。只需输入文本描述，AI将为你创造令人惊叹的图像。
-                            </p>
-                            <ul style="margin-left: var(--space-4); color: var(--color-text-secondary);">
-                                <li>支持多种艺术风格</li>
-                                <li>高达4K分辨率输出</li>
-                                <li>批量生成功能</li>
-                            </ul>
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://pollinationsai.vercel.app/draw" class="button button-primary" target="_blank" rel="noopener noreferrer">
-                                开始创作
-                            </a>
+                            <div class="card-subtitle">将文字转化为艺术</div>
                         </div>
                     </div>
-                    
-                    <div class="card animate-fade-in" style="animation-delay: 0.2s;">
-                        <div class="card-header">
-                            <div class="card-icon" style="background-color: var(--color-secondary);">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="card-body">
+                        <p class="card-description">
+                            将你的想法转化为视觉艺术。只需输入文本描述，AI将为你创造令人惊叹的图像，满足各种创意需求。
+                        </p>
+                        <ul class="card-features">
+                            <li>
+                                <div class="feature-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                                支持多种艺术风格与滤镜
+                            </li>
+                            <li>
+                                <div class="feature-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                                高达4K分辨率输出
+                            </li>
+                            <li>
+                                <div class="feature-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                                批量生成与图像编辑功能
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://pollinationsai.vercel.app/draw" class="button button-primary" target="_blank" rel="noopener noreferrer">
+                            开始创作
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button-icon">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card card-3d-container fade-in float-animation-delayed">
+                    <div class="card-header">
+                        <div class="card-icon-wrapper">
+                            <div class="card-icon-bg"></div>
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M12 6v12"></path>
                                     <path d="M8 10v4"></path>
                                     <path d="M16 10v4"></path>
                                     <path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"></path>
                                 </svg>
                             </div>
+                        </div>
+                        <div class="card-title-wrapper">
                             <h3 class="card-title">AI语音合成</h3>
+                            <div class="card-subtitle">自然流畅的语音体验</div>
                         </div>
-                        <div class="card-body">
-                            <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">
-                                将文本转换为逼真的语音。支持多种语言和声音风格，适用于创作内容、教育材料或个人使用。
-                            </p>
-                            <ul style="margin-left: var(--space-4); color: var(--color-text-secondary);">
-                                <li>支持40+种语言</li>
-                                <li>多种声音风格选择</li>
-                                <li>情感语调调整</li>
-                            </ul>
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://pollinationsai.vercel.app/tts" class="button button-primary" target="_blank" rel="noopener noreferrer">
-                                开始转换
-                            </a>
-                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            将文本转换为逼真的语音。支持多种语言和声音风格，适用于创作内容、教育材料、配音或个人使用。
+                        </p>
+                        <ul class="card-features">
+                            <li>
+                                <div class="feature-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                                支持40+种语言与方言
+                            </li>
+                            <li>
+                                <div class="feature-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                                多种声音风格与角色选择
+                            </li>
+                            <li>
+                                <div class="feature-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                                情感语调与语速调整
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://pollinationsai.vercel.app/tts" class="button button-primary" target="_blank" rel="noopener noreferrer">
+                            开始转换
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button-icon">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="about">
-            <div class="container">
-                <h2 class="section-title text-center">关于我们</h2>
-                <p class="section-subtitle text-center mx-auto">
-                    FreeAI的使命与愿景
-                </p>
-                
-                <div style="max-width: 42rem; margin: 0 auto; background-color: var(--color-surface); padding: var(--space-8); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--color-border);" class="animate-fade-in">
-                    <p style="margin-bottom: var(--space-4); line-height: 1.8; color: var(--color-text-secondary);">
-                        FreeAI 由 <a href="https://musifei.live" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); text-decoration: none; font-weight: 500;">Musifei</a> 创建，旨在让先进的人工智能技术变得更加平易近人和易于使用。我们相信，创造力不应受到技术壁垒或经济限制的阻碍。
-                    </p>
-                    <p style="line-height: 1.8; color: var(--color-text-secondary);">
-                        我们的平台基于 Pollinations.AI 构建，提供免费、高质量的AI工具，帮助艺术家、创作者、教育工作者和好奇的探索者释放他们的创造潜能。无论您是专业创作者还是AI领域的新手，FreeAI都能为您提供直观、强大的工具，帮助您将想法转化为现实。
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <a href="#" class="footer-logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
-                        <path d="M12 8v8"></path>
-                        <path d="M8 12h8"></path>
-                    </svg>
-                    FreeAI
-                </a>
-                <div class="footer-links">
-                    <a href="#" class="footer-link">隐私政策</a>
-                    <a href="#" class="footer-link">使用条款</a>
-                    <a href="mailto:contact@example.com" class="footer-link">联系我们</a>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                © 2025 <a href="https://musifei.live" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); text-decoration: none;">Musifei</a> | 基于 <a href="https://pollinations.ai" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); text-decoration: none;">Pollinations.AI</a>
-            </div>
-        </div>
-    </footer>
+        <footer>
+            <p>© 2025 <a href="https://musifei.live" target="_blank" rel="noopener noreferrer">Musifei</a> | 基于 <a href="https://pollinations.ai" target="_blank" rel="noopener noreferrer">Pollinations.AI</a></p>
+        </footer>
+    </div>
 
     <script>
-        // 简约高效的JavaScript代码
-        document.addEventListener('DOMContentLoaded', () => {
-            // 平滑滚动
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // 检测元素进入视口时添加动画
+        // 渐入动画
+        document.addEventListener('DOMContentLoaded', function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('visible');
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, {
+                threshold: 0.1
+            });
             
-            // 观察所有带有animate-fade-in类的元素
-            document.querySelectorAll('.animate-fade-in').forEach(el => {
-                el.style.opacity = 0;
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            document.querySelectorAll('.fade-in').forEach(el => {
                 observer.observe(el);
             });
-
-            // 导航栏滚动效果
-            let lastScrollTop = 0;
-            window.addEventListener('scroll', () => {
-                const header = document.querySelector('.header');
-                const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                if (currentScrollTop > lastScrollTop) {
-                    // 向下滚动
-                    header.style.transform = 'translateY(-100%)';
+            
+            // 暗色模式切换
+            const themeToggle = document.querySelector('.theme-toggle');
+            const root = document.documentElement;
+            
+            themeToggle.addEventListener('click', () => {
+                if (root.style.getPropertyValue('--color-bg') === '#0f172a') {
+                    // 切换到亮色模式
+                    root.style.setProperty('--color-bg', '#f8fafc');
+                    root.style.setProperty('--color-surface', '#ffffff');
+                    root.style.setProperty('--color-text', '#0f172a');
+                    root.style.setProperty('--color-text-light', '#64748b');
+                    root.style.setProperty('--color-border', '#e2e8f0');
+                    
+                    themeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>`;
                 } else {
-                    // 向上滚动
-                    header.style.transform = 'translateY(0)';
+                    // 切换到暗色模式
+                    root.style.setProperty('--color-bg', '#0f172a');
+                    root.style.setProperty('--color-surface', '#1e293b');
+                    root.style.setProperty('--color-text', '#f8fafc');
+                    root.style.setProperty('--color-text-light', '#94a3b8');
+                    root.style.setProperty('--color-border', '#334155');
+                    
+                    themeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                    </svg>`;
                 }
+            });
+            
+            // 3D卡片效果
+            const cards = document.querySelectorAll('.card-3d-container');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
                 
-                // 当滚动到顶部时，始终显示导航栏
-                if (currentScrollTop <= 0) {
-                    header.style.transform = 'translateY(0)';
-                }
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                    
+                    // 恢复浮动动画
+                    if (card.classList.contains('float-animation')) {
+                        setTimeout(() => {
+                            card.style.animation = 'float 6s ease-in-out infinite';
+                        }, 300);
+                    } else if (card.classList.contains('float-animation-delayed')) {
+                        setTimeout(() => {
+                            card.style.animation = 'float 6s ease-in-out 2s infinite';
+                        }, 300);
+                    }
+                });
                 
-                lastScrollTop = currentScrollTop;
+                card.addEventListener('mouseenter', () => {
+                    // 暂停浮动动画
+                    card.style.animation = 'none';
+                });
             });
         });
     </script>
