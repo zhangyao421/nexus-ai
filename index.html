@@ -9,32 +9,21 @@
         /* 基础设置 */
         :root {
             --color-primary: #4f46e5;
-            --color-primary-light: rgba(79, 70, 229, 0.1);
-            --color-primary-dark: #3730a3;
             --color-secondary: #f43f5e;
-            --color-secondary-light: rgba(244, 63, 94, 0.1);
-            --color-secondary-dark: #be123c;
             --color-bg: #f8fafc;
             --color-surface: #ffffff;
             --color-text: #0f172a;
             --color-text-light: #64748b;
             --color-border: #e2e8f0;
-            --color-border-light: rgba(226, 232, 240, 0.5);
             
             --space-2: 0.5rem;
             --space-4: 1rem;
             --space-6: 1.5rem;
             --space-8: 2rem;
-            --space-12: 3rem;
             
-            --radius: 1rem;
-            --radius-sm: 0.5rem;
-            --radius-lg: 1.5rem;
+            --radius: 0.75rem;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
-            --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition: 200ms ease;
         }
 
         /* 重置 */
@@ -49,29 +38,21 @@
             background-color: var(--color-bg);
             color: var(--color-text);
             line-height: 1.5;
+            padding: var(--space-4);
         }
 
         /* 布局 */
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 var(--space-4);
         }
 
         header {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background-color: rgba(248, 250, 252, 0.8);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--color-border);
-            transition: all var(--transition);
-        }
-
-        .header-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: var(--space-8);
             padding: var(--space-4) 0;
         }
 
@@ -83,423 +64,121 @@
             font-size: 1.25rem;
             color: var(--color-primary);
             text-decoration: none;
-            transition: transform var(--transition);
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo svg {
-            transition: transform 0.5s ease;
-        }
-
-        .logo:hover svg {
-            transform: rotate(90deg);
-        }
-
-        /* 介绍部分 */
-        .intro {
-            text-align: center;
-            padding: var(--space-12) 0 var(--space-8);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .intro h1 {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-4);
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .intro p {
-            color: var(--color-text-light);
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
         }
 
         /* 工具卡片 */
-        .tools-section {
-            padding: var(--space-8) 0;
-        }
-
-        .section-title {
-            font-size: 1.75rem;
-            margin-bottom: var(--space-8);
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-            border-radius: 2px;
-        }
-
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: var(--space-8);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
             margin: var(--space-8) 0;
-            perspective: 1000px;
         }
 
-        /* 高级卡片设计 */
         .card {
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.9), 
-                rgba(255, 255, 255, 0.6)
-            );
-            border-radius: var(--radius-lg);
-            box-shadow: 
-                0 10px 30px -15px rgba(79, 70, 229, 0.15),
-                0 5px 10px rgba(0, 0, 0, 0.05),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            background-color: var(--color-surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             overflow: hidden;
-            transition: transform var(--transition-bounce), box-shadow var(--transition);
+            transition: transform var(--transition), box-shadow var(--transition);
+            border: 1px solid var(--color-border);
             height: 100%;
             display: flex;
             flex-direction: column;
-            position: relative;
-            border: 1px solid var(--color-border-light);
-            transform-style: preserve-3d;
         }
 
         .card:hover {
-            transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
-            box-shadow: 
-                0 20px 40px -20px rgba(79, 70, 229, 0.25),
-                0 10px 20px -5px rgba(0, 0, 0, 0.1),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background: radial-gradient(
-                circle at top left,
-                rgba(79, 70, 229, 0.08),
-                transparent 60%
-            );
-            opacity: 0;
-            transition: opacity var(--transition);
-        }
-
-        .card:nth-child(2)::before {
-            background: radial-gradient(
-                circle at top left,
-                rgba(244, 63, 94, 0.08),
-                transparent 60%
-            );
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, 
-                var(--color-primary), 
-                var(--color-primary-dark)
-            );
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .card:nth-child(2)::after {
-            background: linear-gradient(90deg, 
-                var(--color-secondary), 
-                var(--color-secondary-dark)
-            );
-        }
-
-        .card:hover::after {
-            transform: scaleX(1);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
 
         .card-header {
             padding: var(--space-6);
+            border-bottom: 1px solid var(--color-border);
             display: flex;
             align-items: center;
             gap: var(--space-4);
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-icon-wrapper {
-            position: relative;
-            width: 64px;
-            height: 64px;
-        }
-
-        .card-icon-bg {
-            position: absolute;
-            inset: 0;
-            border-radius: var(--radius);
-            background: linear-gradient(135deg, 
-                var(--color-primary-light), 
-                rgba(79, 70, 229, 0.2)
-            );
-            opacity: 0.8;
-            transform: rotate(-5deg);
-            transition: transform var(--transition);
-        }
-
-        .card:nth-child(2) .card-icon-bg {
-            background: linear-gradient(135deg, 
-                var(--color-secondary-light), 
-                rgba(244, 63, 94, 0.2)
-            );
-        }
-
-        .card:hover .card-icon-bg {
-            transform: rotate(0deg) scale(1.1);
         }
 
         .card-icon {
-            position: absolute;
-            inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--color-primary);
-            transition: transform var(--transition);
-        }
-
-        .card:nth-child(2) .card-icon {
-            color: var(--color-secondary);
-        }
-
-        .card:hover .card-icon {
-            transform: scale(1.1);
-        }
-
-        .card-title-wrapper {
-            flex: 1;
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius);
+            background-color: var(--color-primary);
+            color: white;
         }
 
         .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--color-text), var(--color-text-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            transition: all var(--transition);
-        }
-
-        .card:hover .card-title {
-            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark));
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-
-        .card:nth-child(2):hover .card-title {
-            background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary-dark));
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-
-        .card-subtitle {
-            font-size: 0.875rem;
-            color: var(--color-text-light);
-            margin-top: 4px;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
 
         .card-body {
-            padding: 0 var(--space-6) var(--space-6);
+            padding: var(--space-6);
             flex-grow: 1;
-            position: relative;
-            z-index: 1;
         }
 
         .card-description {
             color: var(--color-text-light);
-            margin-bottom: var(--space-6);
-            font-size: 1rem;
-            line-height: 1.6;
+            margin-bottom: var(--space-4);
         }
 
         .card-features {
             list-style-type: none;
-            margin-left: var(--space-2);
+            margin-left: var(--space-4);
             color: var(--color-text-light);
         }
 
         .card-features li {
             position: relative;
-            padding-left: var(--space-8);
-            margin-bottom: var(--space-4);
-            transition: all var(--transition);
-            display: flex;
-            align-items: center;
+            padding-left: var(--space-4);
+            margin-bottom: var(--space-2);
         }
 
-        .card-features li:hover {
-            transform: translateX(4px);
-            color: var(--color-text);
-        }
-
-        .feature-icon {
+        .card-features li::before {
+            content: "•";
             position: absolute;
             left: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, 
-                var(--color-primary-light), 
-                rgba(79, 70, 229, 0.2)
-            );
             color: var(--color-primary);
-            transition: all var(--transition);
-        }
-
-        .card:nth-child(2) .feature-icon {
-            background: linear-gradient(135deg, 
-                var(--color-secondary-light), 
-                rgba(244, 63, 94, 0.2)
-            );
-            color: var(--color-secondary);
-        }
-
-        .card-features li:hover .feature-icon {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, 
-                var(--color-primary-light), 
-                rgba(79, 70, 229, 0.3)
-            );
-        }
-
-        .card:nth-child(2) .card-features li:hover .feature-icon {
-            background: linear-gradient(135deg, 
-                var(--color-secondary-light), 
-                rgba(244, 63, 94, 0.3)
-            );
         }
 
         .card-footer {
             padding: var(--space-6);
+            border-top: 1px solid var(--color-border);
             display: flex;
             justify-content: flex-end;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-footer::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: var(--space-6);
-            right: var(--space-6);
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--color-border), 
-                transparent
-            );
         }
 
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: var(--space-2);
             padding: 0 var(--space-6);
-            height: 3rem;
-            border-radius: var(--radius);
-            font-weight: 600;
+            height: 2.5rem;
+            border-radius: calc(var(--radius) / 2);
+            font-weight: 500;
             transition: all var(--transition);
             cursor: pointer;
             text-decoration: none;
             border: none;
             outline: none;
-            position: relative;
-            overflow: hidden;
-            font-size: 1rem;
         }
 
         .button-primary {
-            background: linear-gradient(135deg, 
-                var(--color-primary), 
-                var(--color-primary-dark)
-            );
+            background-color: var(--color-primary);
             color: white;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-        }
-
-        .card:nth-child(2) .button-primary {
-            background: linear-gradient(135deg, 
-                var(--color-secondary), 
-                var(--color-secondary-dark)
-            );
-            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
         }
 
         .button-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
-        }
-
-        .card:nth-child(2) .button-primary:hover {
-            box-shadow: 0 6px 16px rgba(244, 63, 94, 0.4);
-        }
-
-        .button-primary::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                rgba(255, 255, 255, 0), 
-                rgba(255, 255, 255, 0.2), 
-                rgba(255, 255, 255, 0)
-            );
-            transform: translateX(-100%);
-            transition: transform 0.8s ease;
-        }
-
-        .button-primary:hover::before {
-            transform: translateX(100%);
-        }
-
-        .button-icon {
-            transition: transform var(--transition);
-        }
-
-        .button-primary:hover .button-icon {
-            transform: translateX(4px);
+            filter: brightness(1.1);
         }
 
         /* 页脚 */
         footer {
             margin-top: var(--space-8);
-            padding: var(--space-8) 0 var(--space-4);
+            padding: var(--space-6) 0;
             text-align: center;
             color: var(--color-text-light);
             font-size: 0.875rem;
@@ -509,370 +188,95 @@
         footer a {
             color: var(--color-primary);
             text-decoration: none;
-            transition: color var(--transition);
-        }
-
-        footer a:hover {
-            color: var(--color-secondary);
-            text-decoration: underline;
         }
 
         /* 响应式设计 */
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
             .tools-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .intro h1 {
-                font-size: 2rem;
-            }
-            
-            .intro p {
-                font-size: 1rem;
-            }
-            
-            .card {
-                transform: none !important;
-            }
-        }
-
-        /* 动画 */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 暗色模式切换按钮 */
-        .theme-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background-color var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .theme-toggle::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-color: var(--color-border-light);
-            border-radius: 50%;
-            transform: scale(0);
-            transition: transform 0.3s ease;
-        }
-
-        .theme-toggle:hover::before {
-            transform: scale(1);
-        }
-
-        .theme-toggle svg {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* 高级卡片浮动效果 */
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .float-animation-delayed {
-            animation: float 6s ease-in-out 2s infinite;
-        }
-
-        /* 鼠标跟随效果 */
-        .card-3d-container {
-            transform-style: preserve-3d;
-            transform: perspective(1000px);
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-container">
-                <a href="#" class="logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
-                        <path d="M12 8v8"></path>
-                        <path d="M8 12h8"></path>
-                    </svg>
-                    FreeAI
-                </a>
-                <button class="theme-toggle" aria-label="切换暗色模式">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </header>
-
     <div class="container">
-        <section class="intro fade-in">
-            <h1>免费AI创作工具</h1>
-            <p>使用我们的高质量AI工具释放你的创造力，无需注册，完全免费</p>
-        </section>
+        <header>
+            <a href="#" class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
+                    <path d="M12 8v8"></path>
+                    <path d="M8 12h8"></path>
+                </svg>
+                AI TOOLS
+            </a>
+        </header>
 
-        <section class="tools-section">
-            <h2 class="section-title fade-in">探索工具</h2>
-            
+        <main>
             <div class="tools-grid">
-                <div class="card card-3d-container fade-in float-animation">
+                <div class="card">
                     <div class="card-header">
-                        <div class="card-icon-wrapper">
-                            <div class="card-icon-bg"></div>
-                            <div class="card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="m2 22 1-1h3l9-9"></path>
-                                    <path d="M3 21v-3l9-9"></path>
-                                    <path d="m15 6 3.2-3.2a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4L19 10"></path>
-                                    <path d="M15 10 5 20"></path>
-                                    <path d="M19 10 9 20"></path>
-                                </svg>
-                            </div>
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m2 22 1-1h3l9-9"></path>
+                                <path d="M3 21v-3l9-9"></path>
+                                <path d="m15 6 3.2-3.2a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4L19 10"></path>
+                                <path d="M15 10 5 20"></path>
+                                <path d="M19 10 9 20"></path>
+                            </svg>
                         </div>
-                        <div class="card-title-wrapper">
-                            <h3 class="card-title">AI图像生成</h3>
-                            <div class="card-subtitle">将文字转化为艺术</div>
-                        </div>
+                        <h3 class="card-title">AI图像生成</h3>
                     </div>
                     <div class="card-body">
                         <p class="card-description">
-                            将你的想法转化为视觉艺术。只需输入文本描述，AI将为你创造令人惊叹的图像，满足各种创意需求。
+                            将你的想法转化为视觉艺术。只需输入文本描述，AI将为你创造令人惊叹的图像。
                         </p>
                         <ul class="card-features">
-                            <li>
-                                <div class="feature-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M20 6 9 17l-5-5"></path>
-                                    </svg>
-                                </div>
-                                支持多种艺术风格与滤镜
-                            </li>
-                            <li>
-                                <div class="feature-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M20 6 9 17l-5-5"></path>
-                                    </svg>
-                                </div>
-                                高达4K分辨率输出
-                            </li>
-                            <li>
-                                <div class="feature-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M20 6 9 17l-5-5"></path>
-                                    </svg>
-                                </div>
-                                批量生成与图像编辑功能
-                            </li>
+                            <li>支持多种艺术风格</li>
+                            <li>高达4K分辨率输出</li>
+                            <li>批量生成功能</li>
                         </ul>
                     </div>
                     <div class="card-footer">
                         <a href="https://pollinationsai.vercel.app/draw" class="button button-primary" target="_blank" rel="noopener noreferrer">
                             开始创作
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button-icon">
-                                <path d="M5 12h14"></path>
-                                <path d="m12 5 7 7-7 7"></path>
-                            </svg>
                         </a>
                     </div>
                 </div>
                 
-                <div class="card card-3d-container fade-in float-animation-delayed">
+                <div class="card">
                     <div class="card-header">
-                        <div class="card-icon-wrapper">
-                            <div class="card-icon-bg"></div>
-                            <div class="card-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 6v12"></path>
-                                    <path d="M8 10v4"></path>
-                                    <path d="M16 10v4"></path>
-                                    <path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"></path>
-                                </svg>
-                            </div>
+                        <div class="card-icon" style="background-color: var(--color-secondary);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 6v12"></path>
+                                <path d="M8 10v4"></path>
+                                <path d="M16 10v4"></path>
+                                <path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"></path>
+                            </svg>
                         </div>
-                        <div class="card-title-wrapper">
-                            <h3 class="card-title">AI语音合成</h3>
-                            <div class="card-subtitle">自然流畅的语音体验</div>
-                        </div>
+                        <h3 class="card-title">AI语音合成</h3>
                     </div>
                     <div class="card-body">
                         <p class="card-description">
-                            将文本转换为逼真的语音。支持多种语言和声音风格，适用于创作内容、教育材料、配音或个人使用。
+                            将文本转换为逼真的语音。支持多种语言和声音风格，适用于创作内容、教育材料或个人使用。
                         </p>
                         <ul class="card-features">
-                            <li>
-                                <div class="feature-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M20 6 9 17l-5-5"></path>
-                                    </svg>
-                                </div>
-                                支持40+种语言与方言
-                            </li>
-                            <li>
-                                <div class="feature-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M20 6 9 17l-5-5"></path>
-                                    </svg>
-                                </div>
-                                多种声音风格与角色选择
-                            </li>
-                            <li>
-                                <div class="feature-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M20 6 9 17l-5-5"></path>
-                                    </svg>
-                                </div>
-                                情感语调与语速调整
-                            </li>
+                            <li>支持20+种语言</li>
+                            <li>多种声音风格选择</li>
+                            <li>情感语调调整</li>
                         </ul>
                     </div>
                     <div class="card-footer">
                         <a href="https://pollinationsai.vercel.app/tts" class="button button-primary" target="_blank" rel="noopener noreferrer">
                             开始转换
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="button-icon">
-                                <path d="M5 12h14"></path>
-                                <path d="m12 5 7 7-7 7"></path>
-                            </svg>
                         </a>
                     </div>
                 </div>
             </div>
-        </section>
+        </main>
 
         <footer>
             <p>© 2025 <a href="https://musifei.live" target="_blank" rel="noopener noreferrer">Musifei</a> | 基于 <a href="https://pollinations.ai" target="_blank" rel="noopener noreferrer">Pollinations.AI</a></p>
         </footer>
     </div>
-
-    <script>
-        // 渐入动画
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // 暗色模式切换
-            const themeToggle = document.querySelector('.theme-toggle');
-            const root = document.documentElement;
-            
-            themeToggle.addEventListener('click', () => {
-                if (root.style.getPropertyValue('--color-bg') === '#0f172a') {
-                    // 切换到亮色模式
-                    root.style.setProperty('--color-bg', '#f8fafc');
-                    root.style.setProperty('--color-surface', '#ffffff');
-                    root.style.setProperty('--color-text', '#0f172a');
-                    root.style.setProperty('--color-text-light', '#64748b');
-                    root.style.setProperty('--color-border', '#e2e8f0');
-                    
-                    themeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>`;
-                } else {
-                    // 切换到暗色模式
-                    root.style.setProperty('--color-bg', '#0f172a');
-                    root.style.setProperty('--color-surface', '#1e293b');
-                    root.style.setProperty('--color-text', '#f8fafc');
-                    root.style.setProperty('--color-text-light', '#94a3b8');
-                    root.style.setProperty('--color-border', '#334155');
-                    
-                    themeToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                    </svg>`;
-                }
-            });
-            
-            // 3D卡片效果
-            const cards = document.querySelectorAll('.card-3d-container');
-            
-            cards.forEach(card => {
-                card.addEventListener('mousemove', e => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = (y - centerY) / 20;
-                    const rotateY = (centerX - x) / 20;
-                    
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-                    
-                    // 恢复浮动动画
-                    if (card.classList.contains('float-animation')) {
-                        setTimeout(() => {
-                            card.style.animation = 'float 6s ease-in-out infinite';
-                        }, 300);
-                    } else if (card.classList.contains('float-animation-delayed')) {
-                        setTimeout(() => {
-                            card.style.animation = 'float 6s ease-in-out 2s infinite';
-                        }, 300);
-                    }
-                });
-                
-                card.addEventListener('mouseenter', () => {
-                    // 暂停浮动动画
-                    card.style.animation = 'none';
-                });
-            });
-        });
-    </script>
 </body>
 </html>
