@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FreeAI - 免费AI图像生成和语音合成工具">
-    <title>FreeAI - 免费AI工具</title>
+    <!-- Updated Title and Description -->
+    <meta name="description" content="Nexus AI: Your central hub for advanced AI tools. Generate stunning images and realistic speech from text, effortlessly.">
+    <title>Nexus AI - The Hub for Creative AI</title>
+    
+    <!-- Added Google Font for a more modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* 基础设置 */
+        /* Basic Setup */
         :root {
-            --color-primary: #4f46e5;
+            --color-primary-start: #4f46e5;
+            --color-primary-end: #6366f1;
             --color-secondary: #f43f5e;
             --color-bg: #f8fafc;
             --color-surface: #ffffff;
@@ -22,11 +30,11 @@
             --space-8: 2rem;
             
             --radius: 0.75rem;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.07);
             --transition: 200ms ease;
         }
 
-        /* 重置 */
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
@@ -34,14 +42,15 @@
         }
 
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            /* Using the new Poppins font */
+            font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: var(--color-bg);
             color: var(--color-text);
-            line-height: 1.5;
+            line-height: 1.6;
             padding: var(--space-4);
         }
 
-        /* 布局 */
+        /* Layout */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -59,14 +68,14 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--color-primary);
+            gap: 0.75rem; /* Adjusted gap */
+            font-weight: 600; /* Slightly bolder */
+            font-size: 1.5rem; /* Larger font */
+            color: var(--color-primary-start);
             text-decoration: none;
         }
 
-        /* 工具卡片 */
+        /* Tool Card */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -87,7 +96,8 @@
         }
 
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
+            /* Enhanced hover shadow */
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
         }
 
@@ -106,8 +116,10 @@
             width: 48px;
             height: 48px;
             border-radius: var(--radius);
-            background-color: var(--color-primary);
+            /* Added gradient background */
+            background: linear-gradient(45deg, var(--color-primary-start), var(--color-primary-end));
             color: white;
+            flex-shrink: 0;
         }
 
         .card-title {
@@ -125,24 +137,30 @@
             margin-bottom: var(--space-4);
         }
 
+
         .card-features {
             list-style-type: none;
-            margin-left: var(--space-4);
+            padding-left: 0; /* Removed default padding */
             color: var(--color-text-light);
         }
-
+        
         .card-features li {
             position: relative;
-            padding-left: var(--space-4);
-            margin-bottom: var(--space-2);
+            padding-left: 1.5em; /* Space for the icon */
+            margin-bottom: 0.5em;
+            display: flex;
+            align-items: center;
         }
-
+        
         .card-features li::before {
-            content: "•";
+            /* Using SVG checkmark for a cleaner look */
+            content: '✓';
             position: absolute;
             left: 0;
-            color: var(--color-primary);
+            color: var(--color-primary-start);
+            font-weight: 700;
         }
+
 
         .card-footer {
             padding: var(--space-6);
@@ -156,26 +174,30 @@
             align-items: center;
             justify-content: center;
             padding: 0 var(--space-6);
-            height: 2.5rem;
-            border-radius: calc(var(--radius) / 2);
+            height: 2.75rem; /* Slightly taller */
+            border-radius: calc(var(--radius) / 1.5); /* Slightly less rounded */
             font-weight: 500;
             transition: all var(--transition);
             cursor: pointer;
             text-decoration: none;
             border: none;
             outline: none;
+            font-size: 0.95rem;
         }
 
         .button-primary {
-            background-color: var(--color-primary);
+            /* Added gradient background */
+            background: linear-gradient(45deg, var(--color-primary-start), var(--color-primary-end));
             color: white;
+            box-shadow: 0 4px 10px -2px rgba(79, 70, 229, 0.4);
         }
 
         .button-primary:hover {
-            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px -3px rgba(79, 70, 229, 0.5);
         }
 
-        /* 页脚 */
+        /* Footer */
         footer {
             margin-top: var(--space-8);
             padding: var(--space-6) 0;
@@ -186,14 +208,18 @@
         }
 
         footer a {
-            color: var(--color-primary);
+            color: var(--color-primary-start);
             text-decoration: none;
+            font-weight: 500;
         }
 
-        /* 响应式设计 */
+        /* Responsive Design */
         @media (max-width: 640px) {
             .tools-grid {
                 grid-template-columns: 1fr;
+            }
+            .logo {
+                font-size: 1.25rem;
             }
         }
     </style>
@@ -201,13 +227,17 @@
 <body>
     <div class="container">
         <header>
+            <!-- Updated Logo and Name -->
             <a href="#" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
-                    <path d="M12 8v8"></path>
-                    <path d="M8 12h8"></path>
+                <!-- New SVG Logo representing 'Nexus' -->
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16.242 7.75803L7.75736 16.2427" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18 12H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16.242 16.2427L7.75736 7.75803" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                AI TOOLS
+                Nexus AI
             </a>
         </header>
 
@@ -217,66 +247,55 @@
                     <div class="card-header">
                         <div class="card-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="m2 22 1-1h3l9-9"></path>
-                                <path d="M3 21v-3l9-9"></path>
-                                <path d="m15 6 3.2-3.2a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4L19 10"></path>
-                                <path d="M15 10 5 20"></path>
-                                <path d="M19 10 9 20"></path>
+                                <path d="m2 22 1-1h3l9-9"></path><path d="M3 21v-3l9-9"></path><path d="m15 6 3.2-3.2a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4L19 10"></path><path d="M15 10 5 20"></path><path d="M19 10 9 20"></path>
                             </svg>
                         </div>
-                        <h3 class="card-title">AI图像生成</h3>
+                        <h3 class="card-title">AI Image Generation</h3>
                     </div>
                     <div class="card-body">
                         <p class="card-description">
-                            将你的想法转化为视觉艺术。只需输入文本描述，AI将为你创造令人惊叹的图像。
+                            Turn your ideas into visual art. Just enter a text description, and the AI will create stunning images for you.
                         </p>
                         <ul class="card-features">
-                            <li>支持多种艺术风格</li>
-                            <li>高达4K分辨率输出</li>
-                            <li>批量生成功能</li>
+                            <li>Supports various art styles</li>
+                            <li>Up to 4K resolution output</li>
+                            <li>Batch generation feature</li>
                         </ul>
                     </div>
                     <div class="card-footer">
                         <a href="https://pollinationsai.vercel.app/draw" class="button button-primary" target="_blank" rel="noopener noreferrer">
-                            开始创作
+                            Start Creating
                         </a>
                     </div>
                 </div>
                 
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-icon" style="background-color: var(--color-secondary);">
+                        <div class="card-icon" style="background: linear-gradient(45deg, #f43f5e, #f87171);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 6v12"></path>
-                                <path d="M8 10v4"></path>
-                                <path d="M16 10v4"></path>
-                                <path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"></path>
+                                <path d="M12 6v12"></path><path d="M8 10v4"></path><path d="M16 10v4"></path><path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="card-title">AI语音合成</h3>
+                        <h3 class="card-title">AI Text-to-Speech</h3>
                     </div>
                     <div class="card-body">
                         <p class="card-description">
-                            将文本转换为逼真的语音。支持多种语言和声音风格，适用于创作内容、教育材料或个人使用。
+                            Convert text into realistic speech. Supports multiple languages and voice styles, perfect for content creation or personal use.
                         </p>
                         <ul class="card-features">
-                            <li>支持20+种语言</li>
-                            <li>多种声音风格选择</li>
-                            <li>情感语调调整</li>
+                            <li>Supports 20+ languages</li>
+                            <li>Multiple voice styles</li>
+                            <li>Emotional tone adjustment</li>
                         </ul>
                     </div>
                     <div class="card-footer">
                         <a href="https://pollinationsai.vercel.app/tts" class="button button-primary" target="_blank" rel="noopener noreferrer">
-                            开始转换
+                            Start Converting
                         </a>
                     </div>
                 </div>
             </div>
         </main>
-
-        <footer>
-            <p>© 2025 <a href="https://musifei.live" target="_blank" rel="noopener noreferrer">Musifei</a> | 基于 <a href="https://pollinations.ai" target="_blank" rel="noopener noreferrer">Pollinations.AI</a></p>
-        </footer>
     </div>
 </body>
 </html>
