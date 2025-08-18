@@ -1,10 +1,11 @@
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="shortcut icon" href="/favicon.ico">
-<title>Free AI 文本转音频</title>
+<title>Nexus AI Text-to-Speech</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root {
@@ -63,17 +64,17 @@ radial-gradient(circle at 20% 90%, rgba(79, 70, 229, 0.03) 0%, transparent 600px
 .container {
 max-width: 1400px;
 margin: 0 auto;
-padding: 1.5rem 1rem; /* 减小顶部和底部内边距 */
+padding: 1.5rem 1rem; /* Reduced top and bottom padding */
 }
 header {
-padding: 1.5rem 0 2rem; /* 减小页眉的内边距 */
+padding: 1.5rem 0 2rem; /* Reduced header padding */
 text-align: center;
 position: relative;
 }
 h1 {
 font-size: 2.6rem;
 font-weight: 800;
-margin-bottom: 0.75rem; /* 减小标题下方间距 */
+margin-bottom: 0.75rem; /* Reduced margin below title */
 background: var(--gradient-primary);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
@@ -89,8 +90,8 @@ line-height: 1.6;
 }
 .content {
 display: flex;
-gap: 1.5rem; /* 减小两列间距 */
-margin-top: 1.5rem; /* 减小顶部间距 */
+gap: 1.5rem; /* Reduced gap between columns */
+margin-top: 1.5rem; /* Reduced top margin */
 position: relative;
 }
 .text-input-section, .audio-output-section {
@@ -101,14 +102,14 @@ width: 50%;
 background-color: var(--card-bg);
 border-radius: var(--border-radius);
 box-shadow: var(--box-shadow);
-padding: 1.25rem; /* 减小卡片内边距 */
-margin-bottom: 1.25rem; /* 减小卡片间距 */
+padding: 1.25rem; /* Reduced card padding */
+margin-bottom: 1.25rem; /* Reduced margin between cards */
 transition: var(--transition);
 position: relative;
 overflow: hidden;
 border: 1px solid rgba(226, 232, 240, 0.6);
 backdrop-filter: blur(10px);
-height: auto; /* 移除固定高度 */
+height: auto; /* Removed fixed height */
 }
 .card:hover {
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.1);
@@ -117,7 +118,7 @@ transform: translateY(-2px);
 .section-title {
 font-size: 1.25rem;
 font-weight: 600;
-margin-bottom: 1rem; /* 减小标题下方间距 */
+margin-bottom: 1rem; /* Reduced margin below title */
 color: var(--text-color);
 display: flex;
 align-items: center;
@@ -131,7 +132,7 @@ font-size: 1.1rem;
 }
 textarea {
 width: 100%;
-height: 180px; /* 减小文本框的高度 */
+height: 180px; /* Reduced textarea height */
 padding: 1rem;
 border: 1px solid var(--border-color);
 border-radius: var(--border-radius);
@@ -152,7 +153,7 @@ background-color: white;
 .text-stats {
 display: flex;
 align-items: center;
-margin-bottom: 1rem; /* 减小下方间距 */
+margin-bottom: 1rem; /* Reduced bottom margin */
 font-size: 0.9rem;
 color: var(--text-light);
 }
@@ -173,7 +174,7 @@ background: var(--gradient-primary);
 color: white;
 border: none;
 padding: 0.75rem 1.25rem;
-height: 2.75rem; /* 减小按钮高度 */
+height: 2.75rem; /* Reduced button height */
 cursor: pointer;
 border-radius: var(--border-radius);
 font-size: 1rem;
@@ -265,29 +266,29 @@ box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 background-color: white;
 }
 .voice-selection {
-margin-bottom: 1.25rem; /* 减小下方间距 */
+margin-bottom: 1.25rem; /* Reduced bottom margin */
 }
 .voice-selection label {
 display: block;
-margin-bottom: 0.5rem; /* 减小下方间距 */
+margin-bottom: 0.5rem; /* Reduced bottom margin */
 font-size: 0.95rem;
 color: var(--text-light);
 font-weight: 500;
 }
 .audio-preview {
-margin-bottom: 1.25rem; /* 减小下方间距 */
+margin-bottom: 1.25rem; /* Reduced bottom margin */
 }
 .custom-audio-player {
 width: 100%;
-margin-top: 0.75rem; /* 减小上方间距 */
+margin-top: 0.75rem; /* Reduced top margin */
 border-radius: var(--border-radius);
 background: #F1F5F9;
-padding: 0.75rem; /* 减小内边距 */
+padding: 0.75rem; /* Reduced padding */
 box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 audio {
 width: 100%;
-height: 60px; /* 减小音频播放器高度 */
+height: 60px; /* Reduced audio player height */
 border-radius: 25px;
 }
 audio::-webkit-media-controls-panel {
@@ -298,8 +299,8 @@ background-color: var(--primary-light);
 border-radius: 50%;
 }
 .status {
-margin-top: 1rem; /* 减小上方间距 */
-padding: 0.75rem; /* 减小内边距 */
+margin-top: 1rem; /* Reduced top margin */
+padding: 0.75rem; /* Reduced padding */
 border-radius: var(--border-radius);
 font-size: 0.95rem;
 display: none;
@@ -325,7 +326,7 @@ border-left: 3px solid var(--error-color);
 .loading {
 display: none;
 align-items: center;
-margin: 1rem 0; /* 减小上下间距 */
+margin: 1rem 0; /* Reduced top and bottom margin */
 font-size: 0.95rem;
 color: var(--text-light);
 }
@@ -343,19 +344,19 @@ margin-right: 0.6rem;
 to { transform: rotate(360deg); }
 }
 .history-section {
-margin-top: 1.25rem; /* 减小上方间距 */
+margin-top: 1.25rem; /* Reduced top margin */
 }
 .history-header {
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin-bottom: 0.75rem; /* 减小下方间距 */
+margin-bottom: 0.75rem; /* Reduced bottom margin */
 }
 .history-warning {
 background-color: rgba(250, 204, 21, 0.1);
 border-left: 3px solid #FACC15;
-padding: 0.6rem 0.75rem; /* 减小内边距 */
-margin-bottom: 1rem; /* 减小下方间距 */
+padding: 0.6rem 0.75rem; /* Reduced padding */
+margin-bottom: 1rem; /* Reduced bottom margin */
 border-radius: var(--border-radius);
 font-size: 0.9rem;
 color: #854D0E;
@@ -367,7 +368,7 @@ margin-right: 0.5rem;
 color: #EAB308;
 }
 .history-container {
-max-height: 350px; /* 减小历史记录的最大高度 */
+max-height: 350px; /* Reduced max height for history */
 overflow-y: auto;
 scrollbar-width: thin;
 scrollbar-color: var(--primary-light) #F1F5F9;
@@ -387,7 +388,7 @@ border-radius: 10px;
 display: flex;
 align-items: center;
 justify-content: space-between;
-padding: 0.75rem 0.5rem; /* 减小内边距 */
+padding: 0.75rem 0.5rem; /* Reduced padding */
 border-bottom: 1px solid var(--border-color);
 transition: var(--transition);
 border-radius: 0.5rem;
@@ -406,7 +407,7 @@ padding-right: 1rem;
 .history-timestamp {
 font-size: 0.8rem;
 color: var(--text-light);
-margin-bottom: 0.3rem; /* 减小下方间距 */
+margin-bottom: 0.3rem; /* Reduced bottom margin */
 }
 .history-voice {
 font-size: 0.95rem;
@@ -414,7 +415,7 @@ font-weight: 600;
 display: flex;
 align-items: center;
 color: var(--primary-dark);
-margin-bottom: 0.2rem; /* 减小下方间距 */
+margin-bottom: 0.2rem; /* Reduced bottom margin */
 }
 .history-voice::before {
 content: '';
@@ -437,31 +438,20 @@ max-width: 100%;
 color: var(--text-light);
 font-size: 0.95rem;
 text-align: center;
-padding: 1.5rem 0; /* 减小内边距 */
+padding: 1.5rem 0; /* Reduced padding */
 }
-footer {
-text-align: center;
-padding: 2rem 0 1.5rem; /* 减小页脚内边距 */
-color: var(--text-light);
-font-size: 0.9rem;
-opacity: 0.8;
-}
-footer i {
-color: var(--primary-light);
-}
-/* Feature card */
 .features-card {
-margin-top: 1.5rem; /* 减小上方间距 */
+margin-top: 1.5rem; /* Reduced top margin */
 background: linear-gradient(180deg, #FFFFFF, #F8FAFC);
 border-radius: var(--border-radius);
-padding: 1.25rem; /* 减小内边距 */
+padding: 1.25rem; /* Reduced padding */
 box-shadow: var(--box-shadow);
 border: 1px solid var(--border-color);
 }
 .features-title {
 font-size: 1.1rem;
 font-weight: 600;
-margin-bottom: 0.75rem; /* 减小下方间距 */
+margin-bottom: 0.75rem; /* Reduced bottom margin */
 color: var(--text-color);
 text-align: center;
 }
@@ -473,8 +463,8 @@ margin: 0;
 .feature-item {
 display: flex;
 align-items: flex-start;
-margin-bottom: 0.6rem; /* 减小下方间距 */
-padding-bottom: 0.6rem; /* 减小内部下方间距 */
+margin-bottom: 0.6rem; /* Reduced bottom margin */
+padding-bottom: 0.6rem; /* Reduced internal bottom padding */
 border-bottom: 1px solid var(--border-color);
 }
 .feature-item:last-child {
@@ -529,12 +519,12 @@ background: var(--gradient-secondary);
 color: white;
 opacity: 0.9;
 }
-/* 优化语音风格选择按钮 */
+/* Optimized voice style selector buttons */
 .voice-style-selector {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* 减小最小宽度 */
-gap: 0.4rem; /* 减小间距 */
-margin-bottom: 1.25rem; /* 减小下方间距 */
+grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Reduced min-width */
+gap: 0.4rem; /* Reduced gap */
+margin-bottom: 1.25rem; /* Reduced bottom margin */
 }
 .voice-style-option {
 min-width: 0;
@@ -546,7 +536,7 @@ display: none;
 display: flex;
 flex-direction: column;
 align-items: center;
-padding: 0.5rem 0.3rem; /* 减小内边距 */
+padding: 0.5rem 0.3rem; /* Reduced padding */
 border: 2px solid var(--border-color);
 border-radius: var(--border-radius);
 cursor: pointer;
@@ -563,7 +553,7 @@ box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 .voice-style-icon {
 font-size: 1rem;
-margin-bottom: 0.2rem; /* 减小下方间距 */
+margin-bottom: 0.2rem; /* Reduced bottom margin */
 }
 .voice-style-name {
 font-weight: 600;
@@ -576,23 +566,23 @@ font-size: 0.7rem;
 color: var(--text-light);
 line-height: 1.1;
 }
-/* 优化预览窗格 */
+/* Optimized preview pane */
 .preview-container {
 background: linear-gradient(135deg, #f9fafb, #f3f4f6);
 border-radius: 15px;
-padding: 1.5rem; /* 减小内边距 */
+padding: 1.5rem; /* Reduced padding */
 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-margin-bottom: 1.25rem; /* 减小下方间距 */
+margin-bottom: 1.25rem; /* Reduced bottom margin */
 position: relative;
 overflow: hidden;
-min-height: 250px; /* 减小最小高度 */
+min-height: 250px; /* Reduced min-height */
 display: flex;
 flex-direction: column;
 }
 .preview-header {
 display: flex;
 align-items: center;
-margin-bottom: 1.25rem; /* 减小下方间距 */
+margin-bottom: 1.25rem; /* Reduced bottom margin */
 }
 .preview-title {
 font-size: 1.2rem;
@@ -612,8 +602,8 @@ background: var(--gradient-primary);
 position: absolute;
 right: -15px;
 top: -15px;
-width: 80px; /* 减小大小 */
-height: 80px; /* 减小大小 */
+width: 80px; /* Reduced size */
+height: 80px; /* Reduced size */
 opacity: 0.05;
 transform: rotate(15deg);
 color: var(--primary-color);
@@ -630,15 +620,15 @@ border-radius: 10px;
 font-size: 0.95rem;
 }
 .preview-placeholder i {
-margin-bottom: 0.75rem; /* 减小下方间距 */
-font-size: 2.2rem; /* 减小图标大小 */
+margin-bottom: 0.75rem; /* Reduced bottom margin */
+font-size: 2.2rem; /* Reduced icon size */
 opacity: 0.5;
 }
-/* 优化快捷键提示样式 */
+/* Optimized shortcut hint style */
 .shortcut-hint {
 display: inline-flex;
 align-items: center;
-margin-left: 0.75rem; /* 减小左边距 */
+margin-left: 0.75rem; /* Reduced left margin */
 font-size: 0.8rem;
 color: var(--text-light);
 vertical-align: middle;
@@ -651,17 +641,17 @@ border: 1px solid #E2E8F0;
 margin: 0 0.2rem;
 font-family: monospace;
 }
-/* 优化使用提示区域 */
+/* Optimized usage tips area */
 .usage-tips {
 background: linear-gradient(to right, #faf5ff, #f5f3ff);
 border-radius: var(--border-radius);
-padding: 1rem; /* 减小内边距 */
-margin-top: 1.25rem; /* 减小上方间距 */
+padding: 1rem; /* Reduced padding */
+margin-top: 1.25rem; /* Reduced top margin */
 }
 .tips-title {
 font-size: 1rem;
 font-weight: 600;
-margin-bottom: 0.6rem; /* 减小下方间距 */
+margin-bottom: 0.6rem; /* Reduced bottom margin */
 display: flex;
 align-items: center;
 }
@@ -677,7 +667,7 @@ margin: 0;
 .tips-list li {
 display: flex;
 align-items: baseline;
-margin-bottom: 0.4rem; /* 减小下方间距 */
+margin-bottom: 0.4rem; /* Reduced bottom margin */
 font-size: 0.9rem;
 }
 .tips-list li:before {
@@ -689,19 +679,19 @@ margin-right: 0.5rem;
 .current-voice-info {
 display: flex;
 align-items: center;
-margin-bottom: 0.75rem; /* 减小下方间距 */
+margin-bottom: 0.75rem; /* Reduced bottom margin */
 background: rgba(255, 255, 255, 0.7);
-padding: 0.6rem 0.75rem; /* 减小内边距 */
+padding: 0.6rem 0.75rem; /* Reduced padding */
 border-radius: 8px;
 }
 .current-voice-icon {
-width: 36px; /* 减小图标大小 */
-height: 36px; /* 减小图标大小 */
+width: 36px; /* Reduced icon size */
+height: 36px; /* Reduced icon size */
 border-radius: 50%;
 display: flex;
 align-items: center;
 justify-content: center;
-margin-right: 0.6rem; /* 减小右边距 */
+margin-right: 0.6rem; /* Reduced right margin */
 color: white;
 }
 .current-voice-details {
@@ -710,7 +700,7 @@ flex: 1;
 .current-voice-name {
 font-weight: 600;
 font-size: 1rem;
-margin-bottom: 0.1rem; /* 减小下方间距 */
+margin-bottom: 0.1rem; /* Reduced bottom margin */
 }
 .current-voice-desc {
 font-size: 0.8rem;
@@ -719,12 +709,12 @@ color: var(--text-light);
 .divider {
 height: 1px;
 background: var(--border-color);
-margin: 1.25rem 0; /* 减小上下间距 */
+margin: 1.25rem 0; /* Reduced top and bottom margin */
 }
 .input-section-title {
 font-size: 1.1rem;
 font-weight: 600;
-margin-bottom: 0.75rem; /* 减小下方间距 */
+margin-bottom: 0.75rem; /* Reduced bottom margin */
 display: flex;
 align-items: center;
 }
@@ -732,7 +722,7 @@ align-items: center;
 margin-right: 0.5rem;
 color: var(--primary-color);
 }
-/* 响应式设计 */
+/* Responsive Design */
 @media (max-width: 1024px) {
 .content {
 flex-direction: column;
@@ -753,14 +743,14 @@ font-size: 1rem;
 padding: 0 1rem;
 }
 .card {
-padding: 1rem; /* 进一步减小移动端的内边距 */
+padding: 1rem; /* Further reduced padding on mobile */
 }
 .section-title {
 font-size: 1.1rem;
 margin-bottom: 0.75rem;
 }
 textarea {
-height: 160px; /* 进一步减小移动端的文本框高度 */
+height: 160px; /* Further reduced textarea height on mobile */
 }
 }
 </style></head>
@@ -815,8 +805,8 @@ h1::after {
 </style>
 
 
-<h1>Free AI 文本转音频</h1>
-<p class="description">输入文本，选择语音风格，一键将文字转换为自然流畅的语音。<br>支持多种声音特征，帮您创建专业水准的音频内容。</p>
+<h1>Nexus AI Text-to-Speech</h1>
+<p class="description">Enter text, choose a voice style, and convert words into natural, fluent speech with one click.<br>Supports multiple voice characteristics to help you create professional-grade audio content.</p>
 
 <br>
 
@@ -868,7 +858,7 @@ h1::after {
     100% { left: 100%; }
 }
 
-/* 添加点击动画 */
+/* Add click animation */
 .sci-fi-btn:active {
     transform: scale(0.45);
     transition: 0.1s;
@@ -877,10 +867,10 @@ h1::after {
 </style>
 
 <a href="https://pollinationsai.vercel.app" class="sci-fi-btn" style="text-decoration: none;">
-    <!-- 添加流光边框 -->
+    <!-- Add glowing border -->
     <span class="glowing-border"></span>
     <span class="glowing-border"></span>
-    返回首页
+    Back to Home
 </a>
 
 
@@ -897,17 +887,17 @@ h1::after {
 <div class="content">
 <section class="text-input-section">
 <div class="card">
-<h2 class="section-title"><i class="fas fa-microphone-alt"></i>语音生成</h2>
-<!-- 语音风格选择 -->
-<div class="input-section-title"><i class="fas fa-sliders"></i>选择语音风格</div>
-<p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text-light);">每种风格都有其独特的音色和表现力，选择最适合您内容的声音</p>
+<h2 class="section-title"><i class="fas fa-microphone-alt"></i>Voice Generation</h2>
+<!-- Voice Style Selection -->
+<div class="input-section-title"><i class="fas fa-sliders"></i>Select Voice Style</div>
+<p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text-light);">Each style has its unique tone and expressiveness. Choose the voice that best suits your content.</p>
 <div class="voice-style-selector">
 <div class="voice-style-option">
 <input type="radio" id="voice-alloy" name="voiceStyle" value="alloy" checked>
 <label for="voice-alloy">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-alloy);"></i></span>
 <span class="voice-style-name">Alloy</span>
-<span class="voice-style-desc">平衡中性</span>
+<span class="voice-style-desc">Balanced</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -915,7 +905,7 @@ h1::after {
 <label for="voice-echo">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-echo);"></i></span>
 <span class="voice-style-name">Echo</span>
-<span class="voice-style-desc">深沉有力</span>
+<span class="voice-style-desc">Deep & Strong</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -923,7 +913,7 @@ h1::after {
 <label for="voice-fable">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-fable);"></i></span>
 <span class="voice-style-name">Fable</span>
-<span class="voice-style-desc">温暖讲述</span>
+<span class="voice-style-desc">Storyteller</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -931,7 +921,7 @@ h1::after {
 <label for="voice-onyx">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-onyx);"></i></span>
 <span class="voice-style-name">Onyx</span>
-<span class="voice-style-desc">威严庄重</span>
+<span class="voice-style-desc">Authoritative</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -939,7 +929,7 @@ h1::after {
 <label for="voice-nova">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-nova);"></i></span>
 <span class="voice-style-name">Nova</span>
-<span class="voice-style-desc">友好专业</span>
+<span class="voice-style-desc">Friendly & Pro</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -947,7 +937,7 @@ h1::after {
 <label for="voice-shimmer">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-shimmer);"></i></span>
 <span class="voice-style-name">Shimmer</span>
-<span class="voice-style-desc">轻快明亮</span>
+<span class="voice-style-desc">Bright & Cheerful</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -955,7 +945,7 @@ h1::after {
 <label for="voice-coral">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-coral);"></i></span>
 <span class="voice-style-name">Coral</span>
-<span class="voice-style-desc">温柔平静</span>
+<span class="voice-style-desc">Calm & Gentle</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -963,7 +953,7 @@ h1::after {
 <label for="voice-verse">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-verse);"></i></span>
 <span class="voice-style-name">Verse</span>
-<span class="voice-style-desc">生动诗意</span>
+<span class="voice-style-desc">Vivid & Poetic</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -971,7 +961,7 @@ h1::after {
 <label for="voice-ballad">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-ballad);"></i></span>
 <span class="voice-style-name">Ballad</span>
-<span class="voice-style-desc">抒情柔和</span>
+<span class="voice-style-desc">Lyrical & Soft</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -979,7 +969,7 @@ h1::after {
 <label for="voice-ash">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-ash);"></i></span>
 <span class="voice-style-name">Ash</span>
-<span class="voice-style-desc">思考沉稳</span>
+<span class="voice-style-desc">Thoughtful</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -987,7 +977,7 @@ h1::after {
 <label for="voice-sage">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-sage);"></i></span>
 <span class="voice-style-name">Sage</span>
-<span class="voice-style-desc">智慧老练</span>
+<span class="voice-style-desc">Wise & Mature</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -995,7 +985,7 @@ h1::after {
 <label for="voice-amuch">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-amuch);"></i></span>
 <span class="voice-style-name">Amuch</span>
-<span class="voice-style-desc">饱满自然</span>
+<span class="voice-style-desc">Rich & Natural</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -1003,7 +993,7 @@ h1::after {
 <label for="voice-aster">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-aster);"></i></span>
 <span class="voice-style-name">Aster</span>
-<span class="voice-style-desc">清晰直接</span>
+<span class="voice-style-desc">Clear & Direct</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -1011,7 +1001,7 @@ h1::after {
 <label for="voice-brook">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-brook);"></i></span>
 <span class="voice-style-name">Brook</span>
-<span class="voice-style-desc">流畅舒适</span>
+<span class="voice-style-desc">Smooth</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -1019,7 +1009,7 @@ h1::after {
 <label for="voice-clover">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-clover);"></i></span>
 <span class="voice-style-name">Clover</span>
-<span class="voice-style-desc">活泼年轻</span>
+<span class="voice-style-desc">Lively & Young</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -1027,7 +1017,7 @@ h1::after {
 <label for="voice-dan">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-dan);"></i></span>
 <span class="voice-style-name">Dan</span>
-<span class="voice-style-desc">男声稳重</span>
+<span class="voice-style-desc">Stable Male</span>
 </label>
 </div>
 <div class="voice-style-option">
@@ -1035,40 +1025,40 @@ h1::after {
 <label for="voice-elan">
 <span class="voice-style-icon"><i class="fas fa-microphone" style="color: var(--voice-elan);"></i></span>
 <span class="voice-style-name">Elan</span>
-<span class="voice-style-desc">优雅流利</span>
+<span class="voice-style-desc">Elegant & Fluent</span>
 </label>
 </div>
 </div>
 <div class="divider"></div>
-<!-- 文本输入 -->
-<div class="input-section-title"><i class="fas fa-pen-fancy"></i>输入文本</div>
-<textarea id="textInput" placeholder="使用ai回复生成对话。如需让AI照着念，可以在文本之前加上：请照着文本念"></textarea>
+<!-- Text Input -->
+<div class="input-section-title"><i class="fas fa-pen-fancy"></i>Enter Text</div>
+<textarea id="textInput" placeholder="Use AI to generate a response for a conversation. If you want the AI to read your text verbatim, you can prefix it with: Please read the text as is."></textarea>
 <div class="text-stats">
 <div class="text-stat">
 <i class="fas fa-text-height"></i>
-<span id="charCount">字符数: 0</span>
+<span id="charCount">Characters: 0</span>
 </div>
 <div class="text-stat">
 <i class="fas fa-clock"></i>
-<span id="durationEstimate">估计时长: 0 秒</span>
+<span id="durationEstimate">Est. Duration: 0 sec</span>
 </div>
 </div>
 <div style="display: flex; align-items: center;">
 <button id="generateBtn" class="btn">
 <i class="fas fa-waveform-voice"></i>
-<span id="generateBtnText">生成语音</span>
+<span id="generateBtnText">Generate Audio</span>
 <span id="generateBtnSpinner" class="spinner" style="display: none; margin-left: 8px;"></span>
 </button>
-<div class="shortcut-hint">快捷键: <kbd>Ctrl</kbd> + <kbd>Enter</kbd></div>
+<div class="shortcut-hint">Shortcut: <kbd>Ctrl</kbd> + <kbd>Enter</kbd></div>
 </div>
 </div>
 <div class="usage-tips">
-<div class="tips-title"><i class="fas fa-lightbulb"></i>使用小技巧</div>
+<div class="tips-title"><i class="fas fa-lightbulb"></i>Usage Tips</div>
 <ul class="tips-list">
-<li>输入标点符号可增加语音的自然停顿和语调变化</li>
-<li>不同语音风格适合不同场景，可以尝试多种风格找到最适合的</li>
-<li>大段文本可划分为多个段落，生成后再合并，效果更佳</li>
-<li>特殊专业术语可能需要加注音或替换为更通用的表达</li>
+<li>Punctuation adds natural pauses and intonation.</li>
+<li>Different voice styles suit different scenarios. Try several to find the best fit.</li>
+<li>For long texts, split them into multiple paragraphs for better results.</li>
+<li>Specialized terms might need phonetic spelling or simpler alternatives.</li>
 </ul>
 </div>
 </section>
@@ -1079,7 +1069,7 @@ h1::after {
 <i class="fas fa-headphones-alt fa-5x"></i>
 </div>
 <div class="preview-header">
-<h3 class="preview-title"><i class="fas fa-play-circle"></i>音频预览</h3>
+<h3 class="preview-title"><i class="fas fa-play-circle"></i>Audio Preview</h3>
 </div>
 <div id="currentVoiceContainer" style="display: none;" class="current-voice-info">
 <div class="current-voice-icon" id="currentVoiceIcon">
@@ -1093,46 +1083,46 @@ h1::after {
 <div id="audioContainer" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
 <div class="preview-placeholder" id="noAudioMessage">
 <i class="fas fa-music"></i>
-<span>尚未生成语音</span>
+<span>No audio generated yet</span>
 </div>
 </div>
 </div>
 <div id="downloadContainer" style="display: none;">
 <button id="downloadBtn" class="btn btn-success">
-<i class="fas fa-download"></i>下载音频文件
+<i class="fas fa-download"></i>Download Audio File
 </button>
 </div>
 <div class="loading" id="loadingIndicator">
-<span class="spinner"></span> 正在生成语音...
+<span class="spinner"></span> Generating audio...
 </div>
 <div id="statusMessage" class="status"></div>
 </div>
 <div class="card history-section">
 <div class="history-header">
-<h2 class="section-title"><i class="fas fa-history"></i>历史记录 <span class="badge">最近10条</span></h2>
+<h2 class="section-title"><i class="fas fa-history"></i>History <span class="badge">Last 10</span></h2>
 <button id="clearHistoryBtn" class="btn btn-sm btn-danger">
-<i class="fas fa-trash"></i>清空记录
+<i class="fas fa-trash"></i>Clear History
 </button>
 </div>
 <div class="history-warning">
 <i class="fas fa-exclamation-triangle"></i>
-生成记录链接刷新后重置，请注意下载
+Generated files reset on refresh. Please download your audio.
 </div>
 <div class="history-container" id="historyContainer">
 <div id="historyList">
-<p class="no-history">暂无历史记录</p>
+<p class="no-history">No history yet</p>
 </div>
 </div>
 </div>
 <div class="features-card">
-<h3 class="features-title">语音特性</h3>
+<h3 class="features-title">Features</h3>
 <ul class="features-list">
 <li class="feature-item">
 <div class="feature-icon">
 <i class="fas fa-volume-high"></i>
 </div>
 <div class="feature-text">
-自然流畅的语音合成，接近真人发音
+Natural and fluent speech synthesis, nearly human-like.
 </div>
 </li>
 <li class="feature-item">
@@ -1140,7 +1130,7 @@ h1::after {
 <i class="fas fa-users"></i>
 </div>
 <div class="feature-text">
-多种声音风格可选，满足不同场景需求
+Multiple voice styles available to meet different needs.
 </div>
 </li>
 <li class="feature-item">
@@ -1148,7 +1138,7 @@ h1::after {
 <i class="fas fa-align-left"></i>
 </div>
 <div class="feature-text">
-支持长文本转换，适合各种内容创作
+Supports long text conversion, suitable for various content creation.
 </div>
 </li>
 <li class="feature-item">
@@ -1156,7 +1146,7 @@ h1::after {
 <i class="fas fa-download"></i>
 </div>
 <div class="feature-text">
-一键下载MP3格式音频，可用于多平台分享
+One-click download of MP3 audio, ready for multi-platform sharing.
 </div>
 </li>
 <li class="feature-item">
@@ -1164,16 +1154,13 @@ h1::after {
 <i class="fas fa-history"></i>
 </div>
 <div class="feature-text">
-本地保存历史记录，方便重复使用和比较
+Saves history locally for easy reuse and comparison.
 </div>
 </li>
 </ul>
 </div>
 </section>
 </div>
-<footer>
-<p>© 2025 <a href="https://musifei.live" target="_blank" style="text-decoration: none; color: inherit;">Musifei</a>  | 基于 Pollinations.AI </p>
-</footer>
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1197,27 +1184,27 @@ const currentVoiceIcon = document.getElementById('currentVoiceIcon');
 const currentVoiceName = document.getElementById('currentVoiceName');
 const currentVoiceDesc = document.getElementById('currentVoiceDesc');
 const MAX_HISTORY_ITEMS = 10; // Limit history to 10 items
-const CHARS_PER_MINUTE = 150; // Estimated speaking speed
+const CHARS_PER_MINUTE = 150*3; // Adjusted for English words per minute approx
 const voiceDescriptions = {
-    'alloy': '平衡中性',
-    'echo': '深沉有力',
-    'fable': '温暖讲述',
-    'onyx': '威严庄重',
-    'nova': '友好专业',
-    'shimmer': '轻快明亮',
-    'coral': '温柔平静',
-    'verse': '生动诗意',
-    'ballad': '抒情柔和',
-    'ash': '思考沉稳',
-    'sage': '智慧老练',
-    'amuch': '饱满自然',
-    'aster': '清晰直接',
-    'brook': '流畅舒适',
-    'clover': '活泼年轻',
-    'dan': '男声稳重',
-    'elan': '优雅流利',
-    'marilyn': '柔美圆润',
-    'meadow': '平和自然'
+    'alloy': 'Balanced & Neutral',
+    'echo': 'Deep & Powerful',
+    'fable': 'Warm Storyteller',
+    'onyx': 'Authoritative & Solemn',
+    'nova': 'Friendly & Professional',
+    'shimmer': 'Bright & Cheerful',
+    'coral': 'Gentle & Calm',
+    'verse': 'Vivid & Poetic',
+    'ballad': 'Lyrical & Soft',
+    'ash': 'Thoughtful & Composed',
+    'sage': 'Wise & Mature',
+    'amuch': 'Rich & Natural',
+    'aster': 'Clear & Direct',
+    'brook': 'Smooth & Comfortable',
+    'clover': 'Lively & Young',
+    'dan': 'Stable & Resonant Male',
+    'elan': 'Elegant & Fluent',
+    'marilyn': 'Soft & Melodious',
+    'meadow': 'Peaceful & Natural'
 };
 const voiceColors = {
     'alloy': '#4F46E5',
@@ -1242,15 +1229,15 @@ const voiceColors = {
 };
 let audioBlob = null;
 let history = [];
-// 同步单选按钮和下拉选择
+// Sync radio buttons with select dropdown
 const voiceStyleOptions = document.querySelectorAll('.voice-style-option input[type="radio"]');
-voiceStyleOptions.forEach(option => {
-    option.addEventListener('change', function() {
-        if(this.checked) {
-            voiceSelect.value = this.value;
-        }
-    });
-});
+// voiceStyleOptions.forEach(option => {
+//     option.addEventListener('change', function() {
+//         if(this.checked) {
+//             voiceSelect.value = this.value;
+//         }
+//     });
+// });
 // Load history from localStorage
 loadHistory();
 // Update character count and duration estimate as user types
@@ -1259,25 +1246,25 @@ function updateTextStats() {
     const text = textInput.value.trim();
     const count = text.length;
     // Update character count
-    charCount.textContent = `字符数: ${count}`;
+    charCount.textContent = `Characters: ${count}`;
     // Calculate and update duration estimate
     const durationMinutes = count / CHARS_PER_MINUTE;
     let durationText;
     if (durationMinutes < 1/60) {
-        durationText = '不到1秒';
+        durationText = 'less than 1 sec';
     } else if (durationMinutes < 1) {
         const seconds = Math.round(durationMinutes * 60);
-        durationText = `${seconds} 秒`;
+        durationText = `${seconds} sec`;
     } else {
         const minutes = Math.floor(durationMinutes);
         const seconds = Math.round((durationMinutes - minutes) * 60);
         if (seconds === 0) {
-            durationText = `${minutes} 分钟`;
+            durationText = `${minutes} min`;
         } else {
-            durationText = `${minutes} 分钟 ${seconds} 秒`;
+            durationText = `${minutes} min ${seconds} sec`;
         }
     }
-    durationEstimate.textContent = `估计时长: ${durationText}`;
+    durationEstimate.textContent = `Est. Duration: ${durationText}`;
 }
 // Function to update the current voice display
 function updateCurrentVoiceDisplay(voice) {
@@ -1293,14 +1280,14 @@ function updateCurrentVoiceDisplay(voice) {
 async function generateAudio() {
     const text = textInput.value.trim();
     const selectedVoiceElement = document.querySelector('.voice-style-option input[type="radio"]:checked');
-    const voice = selectedVoiceElement ? selectedVoiceElement.value : voiceSelect.value;
+    const voice = selectedVoiceElement ? selectedVoiceElement.value : 'alloy';
     if (!text) {
-        showStatus('请输入文本内容', 'error');
+        showStatus('Please enter some text', 'error');
         return;
     }
     // Show loading indicators
     loadingIndicator.style.display = 'flex';
-    generateBtnText.textContent = "正在生成...";
+    generateBtnText.textContent = "Generating...";
     generateBtnSpinner.style.display = 'inline-block';
     generateBtn.disabled = true;
     // Hide any previous status message
@@ -1334,7 +1321,7 @@ async function generateAudio() {
         if (noAudioMessage) {
             noAudioMessage.style.display = 'none';
         }
-        audioContainer.innerHTML = ''; // 清除预览容器
+        audioContainer.innerHTML = ''; // Clear preview container
         audioContainer.appendChild(customPlayerDiv);
         // Show download button
         downloadContainer.style.display = 'block';
@@ -1359,16 +1346,16 @@ async function generateAudio() {
         }
         saveHistory();
         updateHistoryUI(historyItem.id); // Pass the new item ID to highlight it
-        showStatus('语音生成成功！', 'success');
+        showStatus('Audio generated successfully!', 'success');
         // Play the audio automatically
         audioElement.play();
     } catch (error) {
         console.error('Error generating audio:', error);
-        showStatus(`生成语音时出错: ${error.message}`, 'error');
+        showStatus(`Error generating audio: ${error.message}`, 'error');
     } finally {
         // Hide loading indicators
         loadingIndicator.style.display = 'none';
-        generateBtnText.textContent = "生成语音";
+        generateBtnText.textContent = "Generate Audio";
         generateBtnSpinner.style.display = 'none';
         generateBtn.disabled = false;
     }
@@ -1376,7 +1363,7 @@ async function generateAudio() {
 // Function to download the generated audio
 function downloadAudio(blob, filename) {
     if (!blob) {
-        showStatus('没有可下载的音频', 'error');
+        showStatus('No audio to download', 'error');
         return;
     }
     const downloadUrl = URL.createObjectURL(blob);
@@ -1392,7 +1379,7 @@ function downloadAudio(blob, filename) {
 function downloadHistoryItem(id) {
     const item = history.find(h => h.id === id);
     if (item) {
-        const sanitizedText = item.previewText.replace(/[^\w\u4e00-\u9fa5]/g, '');
+        const sanitizedText = item.previewText.replace(/[^\w]/g, '');
         const fileName = `${item.voice}_${sanitizedText}.mp3`;
         downloadAudio(item.blob, fileName);
     }
@@ -1400,7 +1387,7 @@ function downloadHistoryItem(id) {
 // Function to update the history UI
 function updateHistoryUI(newItemId) {
     if (history.length === 0) {
-        historyList.innerHTML = '<p class="no-history">暂无历史记录</p>';
+        historyList.innerHTML = '<p class="no-history">No history yet</p>';
         return;
     }
     historyList.innerHTML = '';
@@ -1421,7 +1408,7 @@ function updateHistoryUI(newItemId) {
                 <div class="history-text">${item.previewText}</div>
             </div>
             <button class="btn btn-text history-download" data-id="${item.id}">
-                <i class="fas fa-download"></i> 下载
+                <i class="fas fa-download"></i> Download
             </button>
         `;
         historyList.appendChild(historyItem);
@@ -1436,11 +1423,11 @@ function updateHistoryUI(newItemId) {
 }
 // Function to clear all history
 function clearHistory() {
-    if (confirm('确定要清空所有历史记录吗？这个操作不可撤销。')) {
+    if (confirm('Are you sure you want to clear all history? This action cannot be undone.')) {
         history = [];
         localStorage.removeItem('audioGeneratorHistory');
         updateHistoryUI();
-        showStatus('历史记录已清空', 'success');
+        showStatus('History has been cleared', 'success');
     }
 }
 // Function to save history to localStorage
@@ -1496,8 +1483,8 @@ downloadBtn.addEventListener('click', () => {
     if (audioBlob) {
         const text = textInput.value.trim();
         const selectedVoiceElement = document.querySelector('.voice-style-option input[type="radio"]:checked');
-        const voice = selectedVoiceElement ? selectedVoiceElement.value : voiceSelect.value;
-        const previewText = text.substring(0, 20).replace(/[^\w\u4e00-\u9fa5]/g, '');
+        const voice = selectedVoiceElement ? selectedVoiceElement.value : 'alloy';
+        const previewText = text.substring(0, 20).replace(/[^\w]/g, '');
         const fileName = `${voice}_${previewText}.mp3`;
         downloadAudio(audioBlob, fileName);
     }
