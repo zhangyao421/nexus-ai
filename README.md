@@ -1,21 +1,83 @@
-# FreeAI
-FreeAI - 基于 [Pollinations.AI](https://pollinations.ai/) API的AI应用平台，实现免费且无限制的AI聊天助手、图像生成和语音合成服务。
+# Nexus AI  ✨
 
-🔑 关键要点：
-1. 提供免费的AI聊天助手，支持问题回答、创意建议和文本编写。
-2. 支持AI图像生成，将文本描述转化为多种风格和高分辨率的视觉艺术。
-3. 提供AI语音合成功能，将文本转换为逼真的多种语言和声音风格的语音。
-4. **免注册登录，无限制使用，完全免费。**
+Nexus AI is a modern, streamlined hub for creative AI tools. It provides an elegant interface for interacting with various AI services, including multi-model chat, image generation, and text-to-speech.
 
-体验地址：[freeai.aihub.ren](https://freeai.aihub.ren/)
+## 🚀 Online Experience
 
+**[Visit Nexus AI -> ](https://pollinationsai.vercel.app/)**
 
-在Vercel部署👇
+## Core Features
 
-<a href="https://vercel.com/new/clone?repository-url=https://github.com/Azad-sl/FreeAI&amp;project-name=FreeAI;repository-name=FreeAI" rel="nofollow"><img src="https://camo.githubusercontent.com/20bea215d35a4e28f2c92ea5b657d006b087687486858a40de2922a4636301ab/68747470733a2f2f76657263656c2e636f6d2f627574746f6e" alt="" data-canonical-src="https://vercel.com/button" style="max-width: 100%;"></a>
+* 🎨 **AI Tool Hub**: An elegant homepage showcasing all available AI tools.
+* 💬 **Multi-Model AI Chat**:
+* Converse with multiple cutting-edge AI models (GPT-4o, Llama 3, Claude 3.5, and more).
+* Fluent conversations with contextual memory.
+* A simple, tech-savvy user interface.
+* 🖼️ **AI Image Generation**: Quickly access powerful text-to-image tools.
+* 🔊 **AI Text-to-Speech**: Quickly connect to high-quality speech synthesis tools.
+* 🌓 **Light and Dark Theme Switcher**: Switch between light and dark modes based on your preference.
+* 📱 **Responsive Design**: Get a great experience on both desktop and mobile.
 
+## 🛠️ Technology Stack
 
+This project is built entirely with front-end infrastructure, with no backend servers or complex dependencies.
 
-觉得好用可以请我喝杯咖啡❤
+* **HTML**
+* **CSS** (using native CSS variables for theming)
+* **JavaScript** (native, no framework)
 
-[<img src="https://s21.ax1x.com/2025/03/14/pEae92Q.png" alt="pEae92Q.png" style="zoom: 20%;" width="400"  />](https://imgse.com/i/pEae92Q)
+## Running Locally
+
+You can easily run Nexus AI on your local computer.
+
+1. **Clone the code repository:**
+```bash
+git clone https://github.com/zhangyao421/nexus-ai.git
+```
+
+2. **Enter the project directory:**
+```bash
+cd nexus-ai
+```
+
+3. **Start a local server:**
+Due to browser security restrictions, you need to access `index.html` through a local server instead of opening it directly in the file browser. The easiest way is:
+
+**Method 1: Use the Live Server plugin for VS Code**
+* If you use Visual Studio Code, install the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) plugin.
+* Open the project folder in VS Code, then right-click the `index.html` file and select "Open with Live Server".
+
+**Method 2: Using Python**
+* If Python is installed on your computer, simply run the following command in the project root directory:
+```bash
+# Python 3.x
+python -m http.server
+
+# Python 2.x
+python -m SimpleHTTPServer
+```
+* Then visit `http://localhost:8000` in your browser.
+
+## ⚙️ Configuration
+
+The AI chat feature requires an API key to work.
+
+1. Open the `chat/index.html` file.
+
+2. Find the `<script>` section at the bottom of the file.
+
+3. Modify the `API_KEY` variable and fill it with your valid key:
+
+```javascript
+// API Key
+const API_KEY = 'xxxxxxxxxx'; // <-- Replace this with your key
+```
+*Note: The code already includes your provided key. If you need to change it, please modify this line. *
+
+## 🤝 Contributions
+
+Contributions of all kinds are welcome! If you have a good idea or find a bug, please feel free to submit a pull request or open an issue.
+
+## 📄 License
+
+This project is open source under the [MIT License](LICENSE).
